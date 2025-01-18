@@ -33,7 +33,7 @@ const SignUp = () => {
       await createUser(data.email, data.password).then((result) =>
         console.log("Signed up")
       );
-      navigate("/");
+      navigate("/dashboard");
       // update profile---------
       await userProfileUpdate(data.name, imageData.data.display_url);
       console.log("Profile Updated");
@@ -41,8 +41,23 @@ const SignUp = () => {
       console.log(err);
     }
 
-    // TODO:
-    // has to store in the database
+    // store user info in the database
+    const coins = data.role === "worker" ? 10 : 50;
+
+    const userInfo = {
+      name: data.name,
+      email: data.email,
+      role: data.role,
+      image: imageData.data.display_url,
+      availableCoins: coins,
+    };
+
+    const res = await axiosPublic.post("/users", userInfo);
+    if (res.data.insertedId) {
+      toast.success("Account created successfully!");
+    } else {
+      toast.error(res.data.message);
+    }
   };
 
   return (

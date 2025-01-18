@@ -27,7 +27,26 @@ const Navbar = () => {
       </li>
 
       {user ? (
-        <></>
+        <>
+          <li>
+            <NavLink
+              to="/dashboard"
+              className={({ isActive }) =>
+                isActive
+                  ? `font-bold border-b-2 border-green-500 transition duration-300`
+                  : ""
+              }
+            >
+              Dashboard
+            </NavLink>
+          </li>
+          <li className="flex items-center space-x-4">
+            <button className="font-bold">
+              Available Coins:{" "}
+              <span className="text-amber-500 font-bold">150</span>
+            </button>
+          </li>
+        </>
       ) : (
         <>
           <li>
@@ -63,7 +82,7 @@ const Navbar = () => {
     <>
       <div className="navbar bg-base-100">
         <div className="navbar-start">
-          <div className="dropdown">
+          <div className="dropdown z-50">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -80,25 +99,51 @@ const Navbar = () => {
                 />
               </svg>
             </div>
-            <ul
+            <div
               tabIndex={0}
               className="menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow space-y-2"
             >
+              <div className="flex items-center space-x-4 mb-5 border-b-2">
+                <button className="font-bold">
+                  Available Coins:{" "}
+                  <span className="text-amber-500 font-bold">150</span>
+                </button>
+              </div>
+              <div>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive
+                      ? `font-bold border-b-2 border-green-500 transition duration-300`
+                      : ""
+                  }
+                >
+                  Home
+                </NavLink>
+              </div>
+              <div>
+                <NavLink
+                  to="/dashboard"
+                  className={({ isActive }) =>
+                    isActive
+                      ? `font-bold border-b-2 border-green-500 transition duration-300`
+                      : ""
+                  }
+                >
+                  Dashboard
+                </NavLink>
+              </div>
               {user && (
-                <li>
-                  <button
-                    onClick={handleLogout}
-                    className="font-bold border-b-2 border-red-500 transition duration-300"
-                  >
+                <div>
+                  <button onClick={handleLogout} className="font-bold">
                     Log Out <TbLogout className="inline-flex text-xl ml-2" />
                   </button>
-                </li>
+                </div>
               )}
-              {navLinks}
-            </ul>
+            </div>
           </div>
-          <NavLink className="btn btn-ghost text-xl">
-            <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 -ml-8 md:-ml-0">
+          <NavLink to="/" className="text-xl">
+            <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 -ml-2 md:-ml-0">
               QuickTasker
             </span>
           </NavLink>

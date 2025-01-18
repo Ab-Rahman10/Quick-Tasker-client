@@ -68,9 +68,18 @@ const WhyQuickTasker = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-12"
         >
-          <button className="bg-blue-500 text-white py-3 px-6 rounded-lg font-bold text-sm sm:text-base md:text-lg hover:bg-blue-700 transition">
+          <motion.button
+            className="bg-blue-500 text-white py-3 px-6 rounded-lg font-bold text-sm sm:text-base md:text-lg hover:bg-blue-700 transition"
+            initial={{ scale: 1 }}
+            animate={{ scale: [1, 1.1, 1] }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              repeatType: "loop",
+            }}
+          >
             Get Started Now
-          </button>
+          </motion.button>
         </motion.div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { RxTransparencyGrid } from "react-icons/rx";
 
 const ServicesSection = () => {
   const containerVariant = {
@@ -19,8 +20,22 @@ const ServicesSection = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
+  const infiniteVariant = {
+    animate: {
+      x: ["0%", "100%"],
+      transition: {
+        x: {
+          repeat: Infinity,
+          repeatType: "loop",
+          duration: 5,
+          ease: "linear",
+        },
+      },
+    },
+  };
+
   return (
-    <div className="bg-gray-100 py-16 px-5 md:px-20">
+    <div className="py-16 px-5 md:px-20">
       <motion.div
         className="text-center mb-10"
         initial={{ opacity: 0, scale: 0.8 }}
@@ -75,6 +90,38 @@ const ServicesSection = () => {
           </p>
         </motion.div>
       </motion.div>
+
+      <div className="mt-5 md:mt-8 relative flex justify-center">
+        <motion.div
+          className="relative"
+          animate={{ x: [-30, -50, -30] }}
+          transition={{ duration: 5, delay: 1, repeat: Infinity }}
+        >
+          <img
+            className="w-28 md:w-36 h-20 rounded-md"
+            src="https://i.ibb.co.com/qxmMmRp/pexels-photo-15406294.webp"
+            alt="Task Scheduling"
+          />
+          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-xs md:text-sm font-bold">
+            Stay Organized
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="relative ml-5"
+          animate={{ x: [30, 50, 30] }}
+          transition={{ duration: 5, delay: 1, repeat: Infinity }}
+        >
+          <img
+            className="w-28 md:w-36 h-20 rounded-md"
+            src="https://i.ibb.co.com/GW0G8s2/pexels-photo-270637.jpg"
+            alt="Team Collaboration"
+          />
+          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-xs md:text-sm font-bold text-center">
+            Collaborate Effectively
+          </div>
+        </motion.div>
+      </div>
     </div>
   );
 };

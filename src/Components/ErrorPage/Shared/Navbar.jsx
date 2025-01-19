@@ -1,9 +1,11 @@
 import { NavLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import { TbLogout } from "react-icons/tb";
+import useGetUserCoins from "../../../Hooks/useGetUserCoins";
 
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
+  const [coins] = useGetUserCoins();
 
   const handleLogout = () => {
     logoutUser().then(() => {
@@ -43,7 +45,7 @@ const Navbar = () => {
           <li className="flex items-center space-x-4">
             <button className="font-bold">
               Available Coins:{" "}
-              <span className="text-amber-500 font-bold">150</span>
+              <span className="text-amber-500 font-bold">{coins}</span>
             </button>
           </li>
         </>

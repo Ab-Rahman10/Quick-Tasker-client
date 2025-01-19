@@ -8,8 +8,8 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import axios from "axios";
 import auth from "../Firebase/Firebase.config";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 export const AuthContext = createContext();
 
@@ -17,6 +17,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
+  const axiosPublic = useAxiosPublic();
 
   //   create user
   const createUser = (email, password) => {
@@ -48,25 +49,21 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
       console.log("Current user-->", currentUser);
+
       // Generate a token-----------------------------------
-      // if (currentUser?.email) {
-      //   const { data } = await axios.post(
-      //     `${import.meta.env.VITE_API_URL}/jwt`,
-      //     {
-      //       email: currentUser?.email,
-      //     },
-      //     {
-      //       withCredentials: true,
-      //     }
-      //   );
-      //   setUser(currentUser);
-      // } else {
-      //   const { data } = await axios.get(
-      //     `${import.meta.env.VITE_API_URL}/logout`,
-      //     { withCredentials: true }
-      //   );
-      //   setUser(currentUser);
-      // }
+      if (currentUser) {
+        // get a token and store in client
+        const user = { email: currentUser?.email };
+        await axiosPublic.post("/jwt", user).then((res) => {
+          if (res.data) {
+            localStorage.setItem("access-token", res.data);
+            setLoading(false);
+          }
+        });
+      } else {
+        localStorage.removeItem("access-token");
+        setLoading(false);
+      }
 
       setUser(currentUser);
       setLoading(false);
@@ -75,7 +72,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       unSubscribe();
     };
-  }, []);
+  }, [axiosPublic]);
 
   //   google sign in
   const googleSignIn = () => {

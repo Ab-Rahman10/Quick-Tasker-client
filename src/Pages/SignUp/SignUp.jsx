@@ -43,7 +43,6 @@ const SignUp = () => {
 
     // store user info in the database
     const coins = data.role === "worker" ? 10 : 50;
-
     const userInfo = {
       name: data.name,
       email: data.email,

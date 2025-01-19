@@ -14,10 +14,9 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log("Form Data:", data);
     try {
       await loginUser(data.email, data.password).then((result) =>
-        console.log(result)
+        console.log("login successful!")
       );
       navigate("/");
     } catch (err) {

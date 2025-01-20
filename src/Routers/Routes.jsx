@@ -9,6 +9,11 @@ import AddNewTask from "../Pages/Dashboard/Buyer/AddNewTask";
 import BuyerHome from "../Pages/Dashboard/Buyer/BuyerHome";
 import MyTasks from "../Pages/Dashboard/Buyer/MyTasks";
 import PurchaseCoin from "../Pages/Dashboard/Buyer/PurchaseCoin";
+import TaskUpdateForm from "../Components/TaskUpdateForm/TaskUpdateForm";
+import WorkerHome from "../Pages/Dashboard/Worker/WorkerHome";
+import TaskList from "../Pages/Dashboard/Worker/TaskList";
+import MySubmissions from "../Pages/Dashboard/Worker/MySubmissions";
+import WithDrawals from "../Pages/Dashboard/Worker/WithDrawals";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +39,7 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: <Dashboard></Dashboard>,
     children: [
+      // Buyer---------------------------------------
       {
         path: "buyer-home",
         element: <BuyerHome></BuyerHome>,
@@ -49,6 +55,30 @@ const router = createBrowserRouter([
       {
         path: "purchase-coin",
         element: <PurchaseCoin></PurchaseCoin>,
+      },
+      {
+        path: "update-task/:id",
+        element: <TaskUpdateForm></TaskUpdateForm>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/task/${params.id}`),
+      },
+
+      // Worker----------------------------------------------
+      {
+        path: "worker-home",
+        element: <WorkerHome></WorkerHome>,
+      },
+      {
+        path: "task-list",
+        element: <TaskList></TaskList>,
+      },
+      {
+        path: "my-submissions",
+        element: <MySubmissions></MySubmissions>,
+      },
+      {
+        path: "withdrawals",
+        element: <WithDrawals></WithDrawals>,
       },
     ],
   },

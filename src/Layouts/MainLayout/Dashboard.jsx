@@ -36,7 +36,7 @@ const Dashboard = () => {
           <li>
             <NavLink
               className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
-              to="/home"
+              to="/dashboard/worker-home"
             >
               <FaHome className="mr-2" /> Home
             </NavLink>
@@ -44,15 +44,15 @@ const Dashboard = () => {
           <li>
             <NavLink
               className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
-              to="/tasklist"
+              to="/dashboard/task-list"
             >
-              <FaList className="mr-2" /> TaskList
+              <FaList className="mr-2" /> Task List
             </NavLink>
           </li>
           <li>
             <NavLink
               className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
-              to="/submissions"
+              to="/dashboard/my-submissions"
             >
               <FaTasks className="mr-2" /> My Submissions
             </NavLink>
@@ -60,7 +60,7 @@ const Dashboard = () => {
           <li>
             <NavLink
               className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
-              to="/withdrawals"
+              to="/dashboard/withdrawals"
             >
               <FaShoppingCart className="mr-2" /> Withdrawals
             </NavLink>
@@ -170,7 +170,10 @@ const Dashboard = () => {
           <div className="text-right">
             <p className="font-medium text-gray-800">{user?.displayName}</p>
             <p className="text-sm text-gray-500">
-              {role} | <span className="text-amber-500 font-bold">{coins}</span>{" "}
+              {role} |{" "}
+              <span className="text-amber-500 font-bold">
+                {coins ? coins : 0}
+              </span>{" "}
               Coins
             </p>
           </div>

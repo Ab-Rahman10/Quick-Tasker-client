@@ -42,13 +42,23 @@ const AddNewTask = () => {
     // Validation
     const result = compareAsc(new Date(), new Date(completionDate));
     if (result === 1) {
-      return toast.error("The completion date must be in the future");
+      toast.error("The completion date must be in the future");
+      return;
     }
 
     const totalPayableAmount = data.requiredWorkers * data.payableAmount;
     if (totalPayableAmount > coins) {
       toast.error("Not enough coins. Please Purchase Coins.");
       navigate("/dashboard/purchase-coin");
+      return;
+    }
+
+    if (data.requiredWorkers <= 0) {
+      toast.error("Please assign at least one worker to this task.");
+      return;
+    }
+    if (data.payableAmount <= 0) {
+      toast.error("Task must have a positive payable amount..");
       return;
     }
 
@@ -80,6 +90,7 @@ const AddNewTask = () => {
         console.log(data);
         toast.success("Task added successfully!");
         refetch();
+        navigate("/dashboard/my-tasks");
       } catch (err) {
         console.log("Task data store problem", err);
       }

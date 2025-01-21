@@ -133,7 +133,7 @@ const Dashboard = () => {
           <li>
             <NavLink
               className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
-              to="/manage-users"
+              to="/dashboard/manage-users"
             >
               <FaUsers className="mr-2" /> Manage users
             </NavLink>
@@ -141,7 +141,7 @@ const Dashboard = () => {
           <li>
             <NavLink
               className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
-              to="/manage-task"
+              to="/dashboard/manage-tasks"
             >
               <FaCogs className="mr-2" /> Manage task
             </NavLink>
@@ -150,6 +150,8 @@ const Dashboard = () => {
       )}
 
       <div className="divider"></div>
+
+      {/* Shared Nav */}
       <li>
         <NavLink
           className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"

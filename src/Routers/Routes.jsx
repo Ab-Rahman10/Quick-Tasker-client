@@ -16,6 +16,11 @@ import MySubmissions from "../Pages/Dashboard/Worker/MySubmissions";
 import WithDrawals from "../Pages/Dashboard/Worker/WithDrawals";
 import TaskDetails from "../Pages/Dashboard/Worker/TaskDetails";
 import AdminHome from "../Pages/Dashboard/Admin/AdminHome";
+import AdminRoute from "./AdminRoute";
+import BuyerRoute from "./BuyerRoute";
+import WorkerRoute from "./WorkerRoute";
+import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
+import ManageTasks from "../Pages/Dashboard/Admin/ManageTasks";
 
 const router = createBrowserRouter([
   {
@@ -44,29 +49,69 @@ const router = createBrowserRouter([
       // Admin ---------------------------------------
       {
         path: "admin-home",
-        element: <AdminHome></AdminHome>,
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manage-users",
+        element: (
+          <AdminRoute>
+            <ManageUsers></ManageUsers>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manage-tasks",
+        element: (
+          <AdminRoute>
+            <ManageTasks></ManageTasks>
+          </AdminRoute>
+        ),
       },
 
       // Buyer---------------------------------------
       {
         path: "buyer-home",
-        element: <BuyerHome></BuyerHome>,
+        element: (
+          <BuyerRoute>
+            <BuyerHome></BuyerHome>
+          </BuyerRoute>
+        ),
       },
       {
         path: "add-new-task",
-        element: <AddNewTask></AddNewTask>,
+        element: (
+          <BuyerRoute>
+            <AddNewTask></AddNewTask>
+          </BuyerRoute>
+        ),
       },
       {
         path: "my-tasks",
-        element: <MyTasks></MyTasks>,
+        element: (
+          <BuyerRoute>
+            <MyTasks></MyTasks>
+          </BuyerRoute>
+        ),
       },
       {
         path: "purchase-coin",
-        element: <PurchaseCoin></PurchaseCoin>,
+        element: (
+          <BuyerRoute>
+            <PurchaseCoin></PurchaseCoin>
+          </BuyerRoute>
+        ),
       },
       {
         path: "update-task/:id",
-        element: <TaskUpdateForm></TaskUpdateForm>,
+        element: (
+          <BuyerRoute>
+            <TaskUpdateForm></TaskUpdateForm>
+          </BuyerRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/task/${params.id}`),
       },
@@ -74,23 +119,44 @@ const router = createBrowserRouter([
       // Worker----------------------------------------------
       {
         path: "worker-home",
-        element: <WorkerHome></WorkerHome>,
+        element: (
+          <WorkerRoute>
+            <WorkerHome></WorkerHome>
+          </WorkerRoute>
+        ),
       },
       {
         path: "task-list",
-        element: <TaskList></TaskList>,
+        element: (
+          <WorkerRoute>
+            <TaskList></TaskList>
+          </WorkerRoute>
+        ),
       },
       {
         path: "my-submissions",
-        element: <MySubmissions></MySubmissions>,
+        element: (
+          <WorkerRoute>
+            <MySubmissions></MySubmissions>
+          </WorkerRoute>
+        ),
       },
       {
         path: "withdrawals",
-        element: <WithDrawals></WithDrawals>,
+        element: (
+          <WorkerRoute>
+            {" "}
+            <WithDrawals></WithDrawals>
+          </WorkerRoute>
+        ),
       },
       {
         path: "task-details/:id",
-        element: <TaskDetails></TaskDetails>,
+        element: (
+          <WorkerRoute>
+            <TaskDetails></TaskDetails>
+          </WorkerRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/task-details/${params.id}`),
       },

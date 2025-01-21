@@ -2,10 +2,12 @@ import { NavLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import { TbLogout } from "react-icons/tb";
 import useGetUserCoins from "../../../Hooks/useGetUserCoins";
+import useRole from "../../../Hooks/useRole";
 
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
   const [coins] = useGetUserCoins();
+  const [role] = useRole();
 
   const handleLogout = () => {
     logoutUser().then(() => {
@@ -32,7 +34,13 @@ const Navbar = () => {
         <>
           <li>
             <NavLink
-              to="/dashboard"
+              to={`${
+                role === "admin"
+                  ? "/dashboard/admin-home"
+                  : role === "buyer"
+                  ? "/dashboard/buyer-home"
+                  : "/dashboard/worker-home"
+              }`}
               className={({ isActive }) =>
                 isActive
                   ? `font-bold border-b-2 border-green-500 transition duration-300`
@@ -42,12 +50,14 @@ const Navbar = () => {
               Dashboard
             </NavLink>
           </li>
-          <li className="flex items-center space-x-4">
-            <button className="font-bold">
-              Available Coins:{" "}
-              <span className="text-amber-500 font-bold">{coins}</span>
-            </button>
-          </li>
+          {role === "admin" ? null : (
+            <li className="flex items-center space-x-4">
+              <button className="font-bold">
+                Available Coins:{" "}
+                <span className="text-amber-500 font-bold">{coins}</span>
+              </button>
+            </li>
+          )}
         </>
       ) : (
         <>
@@ -125,7 +135,13 @@ const Navbar = () => {
               </div>
               <div>
                 <NavLink
-                  to="/dashboard"
+                  to={`${
+                    role === "admin"
+                      ? "/dashboard/admin-home"
+                      : role === "buyer"
+                      ? "/dashboard/buyer-home"
+                      : "/dashboard/worker-home"
+                  }`}
                   className={({ isActive }) =>
                     isActive
                       ? `font-bold border-b-2 border-green-500 transition duration-300`

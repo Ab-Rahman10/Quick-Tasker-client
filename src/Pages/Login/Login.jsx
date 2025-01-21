@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { loginUser, googleSignIn } = useAuth();
@@ -120,6 +120,12 @@ const Login = () => {
           />
           Continue with Google
         </button>
+        <div className="text-center mt-5">
+          Don't have an account?{" "}
+          <span className="underline text-green-500">
+            <Link to="/signUp">Register</Link>
+          </span>
+        </div>
       </div>
     </div>
   );

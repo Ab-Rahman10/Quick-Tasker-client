@@ -14,6 +14,8 @@ import WorkerHome from "../Pages/Dashboard/Worker/WorkerHome";
 import TaskList from "../Pages/Dashboard/Worker/TaskList";
 import MySubmissions from "../Pages/Dashboard/Worker/MySubmissions";
 import WithDrawals from "../Pages/Dashboard/Worker/WithDrawals";
+import TaskDetails from "../Pages/Dashboard/Worker/TaskDetails";
+import AdminHome from "../Pages/Dashboard/Admin/AdminHome";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +41,12 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: <Dashboard></Dashboard>,
     children: [
+      // Admin ---------------------------------------
+      {
+        path: "admin-home",
+        element: <AdminHome></AdminHome>,
+      },
+
       // Buyer---------------------------------------
       {
         path: "buyer-home",
@@ -79,6 +87,12 @@ const router = createBrowserRouter([
       {
         path: "withdrawals",
         element: <WithDrawals></WithDrawals>,
+      },
+      {
+        path: "task-details/:id",
+        element: <TaskDetails></TaskDetails>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/task-details/${params.id}`),
       },
     ],
   },

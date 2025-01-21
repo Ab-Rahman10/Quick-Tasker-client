@@ -4,7 +4,7 @@ import useAuth from "../../Hooks/useAuth.jsx";
 import toast from "react-hot-toast";
 import axios from "axios";
 import useAxiosPublic from "../../Hooks/useAxiosPublic.jsx";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${
   import.meta.env.VITE_IMAGE_HOSTING_KEY
@@ -201,6 +201,12 @@ const SignUp = () => {
             Register
           </button>
         </form>
+        <div className="text-center mt-5">
+          Already have an account?{" "}
+          <span className="underline text-green-500">
+            <Link to="/login">Login</Link>
+          </span>
+        </div>
       </div>
     </div>
   );

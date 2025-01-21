@@ -15,7 +15,9 @@ const useGetUserCoins = () => {
     enabled: !loading && !!user?.email,
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/users/coins/${user?.email}`);
-
+      if (data.coins === undefined) {
+        return null;
+      }
       return data.coins;
     },
   });

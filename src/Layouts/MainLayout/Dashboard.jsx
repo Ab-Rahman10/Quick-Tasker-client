@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaBell } from "react-icons/fa";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import useRole from "../../Hooks/useRole";
 import useAuth from "../../Hooks/useAuth";
 import {
@@ -12,14 +12,16 @@ import {
   FaCogs,
 } from "react-icons/fa";
 import { RiMenu2Line } from "react-icons/ri";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import useGetUserCoins from "../../Hooks/useGetUserCoins";
+import { TbLogout } from "react-icons/tb";
 
 const Dashboard = () => {
-  const { user, loading } = useAuth();
+  const { user, loading, logoutUser } = useAuth();
   const [role, isLoading] = useRole();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [coins] = useGetUserCoins();
+  const navigate = useNavigate();
 
   if (isLoading || loading)
     return (
@@ -27,6 +29,13 @@ const Dashboard = () => {
         <progress className="progress w-56"></progress>
       </div>
     );
+
+  // Logout
+  const handleLogout = () => {
+    logoutUser();
+    toast.success("Logout successfully!");
+    navigate("/login");
+  };
 
   const navLinks = (
     <>
@@ -116,7 +125,7 @@ const Dashboard = () => {
           <li>
             <NavLink
               className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
-              to="/home"
+              to="/dashboard/admin-home"
             >
               <FaHome className="mr-2" /> Home
             </NavLink>
@@ -139,6 +148,24 @@ const Dashboard = () => {
           </li>
         </>
       )}
+
+      <div className="divider"></div>
+      <li>
+        <NavLink
+          className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
+          to="/"
+        >
+          <FaHome className="mr-2" /> Home
+        </NavLink>
+      </li>
+      <li>
+        <button
+          onClick={handleLogout}
+          className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
+        >
+          <TbLogout className="mr-2" /> Log out
+        </button>
+      </li>
     </>
   );
 

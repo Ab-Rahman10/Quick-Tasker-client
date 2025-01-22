@@ -6,7 +6,7 @@ const TaskProgress = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-8 text-center">
         {/* Heading */}
         <motion.h2
-          className="text-2xl sm:text-3xl font-semibold text-gray-800 mb-6"
+          className="text-3xl md:text-4xl font-bold mt-4 mb-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}

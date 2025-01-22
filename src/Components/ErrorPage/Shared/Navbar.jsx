@@ -161,7 +161,7 @@ const Navbar = () => {
             </div>
           </div>
           <NavLink to="/" className="text-xl">
-            <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 -ml-2 md:-ml-0">
+            <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 -ml-2 md:ml-3">
               QuickTasker
             </span>
           </NavLink>

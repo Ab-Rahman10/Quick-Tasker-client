@@ -163,7 +163,7 @@ const Dashboard = () => {
       <li>
         <button
           onClick={handleLogout}
-          className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
+          className="py-2 px-4 rounded-md text-gray-700 hover:bg-red-100 hover:text-red-500 flex items-center"
         >
           <TbLogout className="mr-2" /> Log out
         </button>
@@ -201,9 +201,9 @@ const Dashboard = () => {
             <p className="text-sm text-gray-500">
               {role} |{" "}
               <span className="text-amber-500 font-bold">
-                {coins ? coins : 0}
+                {role === "admin" ? null : coins ? coins : 0}
               </span>{" "}
-              Coins
+              {role === "admin" ? null : "Coins"}
             </p>
           </div>
           <img

@@ -12,7 +12,7 @@ const useRole = () => {
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/users/role/${user?.email}`);
 
-      return data?.role;
+      return data?.role || null;
     },
   });
 

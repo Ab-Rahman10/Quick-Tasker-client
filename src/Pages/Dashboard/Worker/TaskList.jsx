@@ -57,8 +57,8 @@ const TaskList = () => {
               </p>
 
               <div className="flex justify-between items-center">
-                <p className="text-lg font-bold text-green-400 mt-2">
-                  ${task.payable_amount} USD
+                <p className="text-lg font-bold text-amber-400 mt-2">
+                  {task.payable_amount}
                 </p>
                 {/* View Details Button */}
                 <div className="mt-4">

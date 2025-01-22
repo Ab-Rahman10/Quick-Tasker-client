@@ -2,10 +2,13 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const { loginUser, googleSignIn } = useAuth();
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
 
   const {
     register,
@@ -16,7 +19,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       await loginUser(data.email, data.password).then((result) =>
-        console.log("login successful!")
+        console.log("login successfully!")
       );
       navigate("/");
     } catch (err) {
@@ -24,10 +27,35 @@ const Login = () => {
     }
   };
 
-  // Google sign in
-  const handleGoogleSignIn = () => {
-    googleSignIn();
-    navigate("/");
+  const handleGoogleSignIn = async () => {
+    try {
+      // Google Sign-In
+      const result = await googleSignIn();
+      const user = result.user;
+
+      // Store user info in db
+      const userInfo = {
+        name: user.displayName,
+        email: user.email,
+        image: user.photoURL,
+        role: "worker",
+        availableCoins: 10,
+      };
+
+      const res = await axiosPublic.post("/users", userInfo);
+
+      if (res.data.insertedId) {
+        toast.success("Account created successfully!");
+      } else {
+        toast.success("Welcome back");
+      }
+
+      // Navigate to the home page
+      navigate("/");
+    } catch (error) {
+      console.error("Google Sign-In failed:", error.message);
+      toast.error("Failed to sign in with Google");
+    }
   };
 
   return (

@@ -3,6 +3,7 @@ import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const ManageUsers = () => {
   const { user, loading } = useAuth();
@@ -40,29 +41,66 @@ const ManageUsers = () => {
     e.preventDefault();
 
     const selectedRole = { role: e.target.role.value };
-    try {
-      // now change in db
-      await axiosSecure
-        .patch(`/user-role-update/${userId}`, selectedRole)
-        .then((res) => {
-          if (res.data.modifiedCount > 0) {
-            refetch();
-            toast.success("User role updated successfully!");
-          }
-        });
-    } catch (err) {
-      console.log(err);
+    if (!selectedRole.role) {
+      document.getElementById("my_modal_5").close();
+      return toast.error("Please select a role.");
+    } else {
+      try {
+        // now change in db
+        await axiosSecure
+          .patch(`/user-role-update/${userId}`, selectedRole)
+          .then((res) => {
+            if (res.data.modifiedCount > 0) {
+              refetch();
+              toast.success("User role updated successfully!");
+            }
+          });
+      } catch (err) {
+        console.log(err);
+      }
     }
 
     document.getElementById("my_modal_5").close();
   };
 
+  // delete user
+  const handleDelete = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const { data } = await axiosSecure.delete(`/user-delete/${id}`);
+          if (data.deletedCount > 0) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "User has been deleted.",
+              icon: "success",
+            });
+            refetch();
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    });
+  };
+
   return (
-    <div>
+    <div className="mt-5 ml-5">
+      <h1 className="text-3xl font-bold text-green-500 mb-6 text-center">
+        Manage users
+      </h1>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
-          <thead>
+          <thead className="bg-green-500 text-white">
             <tr>
               <th>#</th>
               <th>Image</th>
@@ -91,11 +129,13 @@ const ManageUsers = () => {
                 <td>{user.email}</td>
                 <td>{user.role}</td>
                 <td>
-                  <span className="text-amber-500">${user.availableCoins}</span>{" "}
-                  USD
+                  <span className="text-amber-500">{user.availableCoins}</span>{" "}
                 </td>
-                <th className="space-x-2">
-                  <button className="py-1 px-3 rounded-md bg-red-500 text-white font-medium">
+                <th className="flex flex-col gap-2 md:flex md:flex-row">
+                  <button
+                    onClick={() => handleDelete(user._id)}
+                    className="py-1 px-3 rounded-md bg-red-500 text-white font-medium"
+                  >
                     Remove
                   </button>
                   <button

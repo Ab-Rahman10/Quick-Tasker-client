@@ -33,7 +33,7 @@ const SignUp = () => {
       await createUser(data.email, data.password).then((result) =>
         console.log("Signed up")
       );
-      navigate("/dashboard");
+      navigate("/");
       // update profile---------
       await userProfileUpdate(data.name, imageData.data.display_url);
       console.log("Profile Updated");

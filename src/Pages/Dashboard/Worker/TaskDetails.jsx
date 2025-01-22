@@ -59,9 +59,9 @@ const TaskDetails = () => {
           <p className="text-gray-600 mb-2">
             <strong>Required Workers:</strong> {task.required_workers}
           </p>
-          <p className="text-green-500 mb-2">
-            <strong className="text-gray-600">Payable Amount:</strong> $
-            {task.payable_amount} USD
+          <p className="text-amber-500 mb-2">
+            <strong className="text-gray-600">Payable Amount:</strong>
+            {task.payable_amount}
           </p>
           <p className="text-gray-600 mb-2">
             <strong>Completion Date:</strong> {task.completion_date}

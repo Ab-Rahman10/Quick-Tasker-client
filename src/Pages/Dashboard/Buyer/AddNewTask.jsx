@@ -80,9 +80,11 @@ const AddNewTask = () => {
       required_workers: parseInt(data.requiredWorkers),
       payable_amount: parseInt(data.payableAmount),
       completion_date: completionDate,
+      compilation_date: format(new Date(), "P"),
       submission_info: data.submissionInfo,
       task_image: imageData.data.display_url,
     };
+    console.log(taskData);
 
     if (imageData.success) {
       try {

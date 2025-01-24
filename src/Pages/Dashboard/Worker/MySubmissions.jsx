@@ -32,7 +32,7 @@ const MySubmissions = () => {
     <div>
       <div className="max-w-7xl mx-auto p-6">
         <div className="overflow-x-auto bg-white p-4 rounded-lg shadow-md border border-gray-200">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
             My Submissions
           </h2>
           <table className="table w-full table-auto">
@@ -67,13 +67,17 @@ const MySubmissions = () => {
                     <td className="py-3 px-6">{idx + 1}</td>
                     <td className="py-3 px-6">{sub.title}</td>
                     <td className="py-3 px-6">{sub.buyer_name}</td>
-                    <td className="py-3 px-6">${sub.payable_amount}</td>
+                    <td className="py-3 px-6 text-amber-500 ">
+                      {sub.payable_amount}
+                    </td>
                     <td className="py-3 px-6">
                       <span
                         className={`text-sm font-semibold ${
                           sub.status === "Approved"
                             ? "text-green-600"
-                            : "text-yellow-500"
+                            : sub.status === "pending"
+                            ? "text-yellow-500"
+                            : "text-red-500"
                         }`}
                       >
                         {sub.status}

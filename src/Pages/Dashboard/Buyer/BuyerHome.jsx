@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import TaskToReview from "./TaskToReview";
 
 const BuyerHome = () => {
   const { user } = useAuth();
@@ -73,6 +74,8 @@ const BuyerHome = () => {
           </div>
         </div>
       </div>
+      {/* Task To preview */}
+      <TaskToReview refetch={refetch}></TaskToReview>
     </div>
   );
 };

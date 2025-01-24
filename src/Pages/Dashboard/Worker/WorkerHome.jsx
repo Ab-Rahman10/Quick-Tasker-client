@@ -103,7 +103,9 @@ const WorkerHome = () => {
                 >
                   <td className="py-3 px-6">{idx + 1}</td>
                   <td className="py-3 px-6">{sub.title}</td>
-                  <td className="py-3 px-6">${sub.payable_amount}</td>
+                  <td className="py-3 px-6 text-amber-500">
+                    {sub.payable_amount}
+                  </td>
                   <td className="py-3 px-6">{sub.buyer_name}</td>
                   <td className="py-3 px-6 text-green-600 font-semibold">
                     {sub.status}

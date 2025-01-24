@@ -27,6 +27,8 @@ const TaskUpdateForm = () => {
       if (data.modifiedCount > 0) {
         toast.success("Task Updated successfully!");
         navigate("/dashboard/my-tasks");
+      } else {
+        toast.error("No updates detected. Please make a change and try again.");
       }
     } catch (error) {
       console.error("Error updating task:", error);

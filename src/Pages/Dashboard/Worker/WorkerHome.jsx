@@ -18,12 +18,12 @@ const WorkerHome = () => {
     },
   });
 
-  if (isLoading)
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <progress className="progress w-56"></progress>
-      </div>
-    );
+  // Total earning of worker
+  const approvedSub = submissions.filter((sub) => sub.status === "Approved");
+  const totalPayment = approvedSub.reduce(
+    (total, payment) => total + payment.payable_amount,
+    0
+  );
 
   // Get pending submissions
   const pendingSubmissions = submissions.filter(
@@ -53,7 +53,7 @@ const WorkerHome = () => {
           <h3 className="text-lg font-semibold text-gray-700">
             Pending Submissions
           </h3>
-          <p className="text-3xl font-bold text-yellow-500">
+          <p className="text-3xl font-bold text-green-600">
             {pendingSubmissions.length}
           </p>
           <p className="text-sm text-gray-500">Tasks that are still pending</p>
@@ -61,7 +61,7 @@ const WorkerHome = () => {
 
         <div className="stat-card p-6 bg-white rounded-lg shadow-lg flex flex-col items-center">
           <h3 className="text-lg font-semibold text-gray-700">Total Payment</h3>
-          <p className="text-3xl font-bold text-blue-500">$20</p>
+          <p className="text-3xl font-bold text-amber-500">{totalPayment}</p>
           <p className="text-sm text-gray-500">
             Total amount payable for completed tasks
           </p>

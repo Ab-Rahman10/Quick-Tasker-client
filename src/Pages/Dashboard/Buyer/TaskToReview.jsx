@@ -4,7 +4,7 @@ import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 
-const TaskToReview = ({ refetch: refetchStats }) => {
+const TaskToReview = ({ refetch: refetchStats, approvedRefetch }) => {
   const [modalData, setModalData] = useState(null);
   const { user, loading } = useAuth();
   const axiosSecure = useAxiosSecure();
@@ -21,8 +21,6 @@ const TaskToReview = ({ refetch: refetchStats }) => {
       return data;
     },
   });
-
-  console.log(pendingSubs);
 
   if (loading && isLoading)
     return (
@@ -47,6 +45,8 @@ const TaskToReview = ({ refetch: refetchStats }) => {
         toast.success("Task has been approved");
       }
       refetch();
+      refetchStats();
+      approvedRefetch();
     } catch (err) {
       console.log("Error from approve task", err);
     }

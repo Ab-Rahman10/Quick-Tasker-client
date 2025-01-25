@@ -21,6 +21,8 @@ import BuyerRoute from "./BuyerRoute";
 import WorkerRoute from "./WorkerRoute";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
 import ManageTasks from "../Pages/Dashboard/Admin/ManageTasks";
+import Payment from "../Pages/Dashboard/Buyer/Payment";
+import PaymentHistory from "../Pages/Dashboard/Buyer/PaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -114,6 +116,22 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/task/${params.id}`),
+      },
+      {
+        path: "payment",
+        element: (
+          <BuyerRoute>
+            <Payment></Payment>
+          </BuyerRoute>
+        ),
+      },
+      {
+        path: "payment-history",
+        element: (
+          <BuyerRoute>
+            <PaymentHistory></PaymentHistory>
+          </BuyerRoute>
+        ),
       },
 
       // Worker----------------------------------------------

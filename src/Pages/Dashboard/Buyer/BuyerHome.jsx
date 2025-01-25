@@ -4,7 +4,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import TaskToReview from "./TaskToReview";
 
 const BuyerHome = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const axiosSecure = useAxiosSecure();
 
   const {
@@ -26,8 +26,35 @@ const BuyerHome = () => {
     0
   );
 
-  // TODO:
-  // Total payments
+  //  get total paid payment by the user
+  const {
+    data: approvedData = [],
+    isLoading: approvedLoading,
+    refetch: approvedRefetch,
+  } = useQuery({
+    queryKey: [user?.email, "total-payment"],
+    enabled: !loading || !!user?.email,
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(
+        `/total-paid-payment/${user?.email}`
+      );
+      return data;
+    },
+  });
+
+  //  total payment
+  const totalPayment = approvedData.reduce(
+    (total, payment) => total + payment.payable_amount,
+    0
+  );
+
+  if (approvedLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <progress className="progress w-56"></progress>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -52,7 +79,7 @@ const BuyerHome = () => {
             <div className="stat-title text-xl font-semibold text-gray-700 mb-2 text-center">
               Pending Tasks
             </div>
-            <div className="stat-value text-3xl font-bold text-yellow-500">
+            <div className="stat-value text-3xl font-bold text-green-600">
               {pendingTasks}
             </div>
             <div className="stat-desc text-center text-gray-500 mt-2">
@@ -65,9 +92,11 @@ const BuyerHome = () => {
             <div className="stat-title text-xl font-semibold text-gray-700 mb-2 text-center">
               Total Payment
             </div>
-            <div className="stat-value text-3xl font-bold text-blue-500">
-              $250.00
-            </div>
+            {totalPayment && (
+              <div className="stat-value text-3xl font-bold text-amber-500">
+                {totalPayment}
+              </div>
+            )}
             <div className="stat-desc text-center text-gray-500 mt-2">
               Total amount paid by you
             </div>
@@ -75,7 +104,10 @@ const BuyerHome = () => {
         </div>
       </div>
       {/* Task To preview */}
-      <TaskToReview refetch={refetch}></TaskToReview>
+      <TaskToReview
+        refetch={refetch}
+        approvedRefetch={approvedRefetch}
+      ></TaskToReview>
     </div>
   );
 };

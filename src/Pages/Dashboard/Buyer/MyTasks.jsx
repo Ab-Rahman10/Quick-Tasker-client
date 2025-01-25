@@ -3,10 +3,12 @@ import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import useGetUserCoins from "../../../Hooks/useGetUserCoins";
 
 const MyTasks = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const [, , refetchForCoins] = useGetUserCoins();
 
   const {
     data: tasks = [],
@@ -47,6 +49,7 @@ const MyTasks = () => {
           const res = await axiosSecure.patch("/delete-refill-task", task);
           console.log(res.data);
           refetch();
+          refetchForCoins();
 
           // show success message
           Swal.fire({

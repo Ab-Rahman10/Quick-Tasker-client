@@ -7,11 +7,11 @@ const Footer = () => {
     <footer className="bg-[#282828] text-white py-6">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
         {/* Logo */}
-        <NavLink className="btn btn-ghost text-xl">
+        <Link to="/" className="btn btn-ghost text-xl">
           <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
             QuickTasker
           </span>
-        </NavLink>
+        </Link>
 
         {/* Social Media Icons */}
         <div className="flex space-x-4">

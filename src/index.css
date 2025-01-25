@@ -7,3 +7,16 @@
 html {
   overflow-y: scroll;
 }
+
+.active {
+  padding-top: 0.5rem; /* py-2 */
+  padding-bottom: 0.5rem;
+  padding-left: 1rem; /* px-4 */
+  padding-right: 1rem;
+  border-radius: 0.375rem; /* rounded-md */
+  color: #10b981; /* text-gray-700 */
+  background-color: #d1fae5; /* hover:bg-green-100 */
+  display: flex; /* flex */
+  align-items: center; /* items-center */
+  transition: background-color 0.2s, color 0.2s; /* for smooth hover effect */
+}

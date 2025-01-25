@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import { TbLogout } from "react-icons/tb";
 import useGetUserCoins from "../../../Hooks/useGetUserCoins";
@@ -6,8 +6,16 @@ import useRole from "../../../Hooks/useRole";
 
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
-  const [coins] = useGetUserCoins();
+  const [coins, isLoading] = useGetUserCoins();
   const [role] = useRole();
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <progress className="progress w-56"></progress>
+      </div>
+    );
+  }
 
   const handleLogout = () => {
     logoutUser().then(() => {
@@ -115,12 +123,14 @@ const Navbar = () => {
               tabIndex={0}
               className="menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow space-y-2"
             >
-              <div className="flex items-center space-x-4 mb-5 border-b-2">
-                <button className="font-bold">
-                  Available Coins:{" "}
-                  <span className="text-amber-500 font-bold">150</span>
-                </button>
-              </div>
+              {role && (
+                <div className="flex items-center space-x-4 mb-5 border-b-2">
+                  <button className="font-bold">
+                    Available Coins:{" "}
+                    <span className="text-amber-500 font-bold">{coins}</span>
+                  </button>
+                </div>
+              )}
               <div>
                 <NavLink
                   to="/"
@@ -160,11 +170,11 @@ const Navbar = () => {
               )}
             </div>
           </div>
-          <NavLink to="/" className="text-xl">
+          <Link to="/" className="text-xl">
             <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 -ml-2 md:ml-3">
               QuickTasker
             </span>
-          </NavLink>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu-horizontal px-1 space-x-10 flex items-center">

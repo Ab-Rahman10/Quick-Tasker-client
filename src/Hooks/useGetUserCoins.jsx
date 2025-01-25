@@ -9,7 +9,7 @@ const useGetUserCoins = () => {
   const {
     data: coins,
     isLoading,
-    refetch,
+    refetch: refetchForCoins,
   } = useQuery({
     queryKey: [user?.email, "coins"],
     enabled: !loading && !!user?.email,
@@ -22,7 +22,7 @@ const useGetUserCoins = () => {
     },
   });
 
-  return [coins, isLoading, refetch];
+  return [coins, isLoading, refetchForCoins];
 };
 
 export default useGetUserCoins;

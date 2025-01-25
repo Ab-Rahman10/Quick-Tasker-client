@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaBell } from "react-icons/fa";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import useRole from "../../Hooks/useRole";
 import useAuth from "../../Hooks/useAuth";
 import {
@@ -43,39 +43,48 @@ const Dashboard = () => {
       {role === "worker" && (
         <>
           <li>
-            <NavLink
-              className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
-              to="/dashboard/worker-home"
-            >
-              <FaHome className="mr-2" /> Home
-            </NavLink>
+            <button onClick={() => setIsSidebarOpen(false)}>
+              <NavLink
+                className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
+                to="/dashboard/worker-home"
+              >
+                <FaHome className="mr-2" /> Home
+              </NavLink>
+            </button>
           </li>
           <li>
-            <NavLink
-              className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
-              to="/dashboard/task-list"
-            >
-              <FaList className="mr-2" /> Task List
-            </NavLink>
+            <button onClick={() => setIsSidebarOpen(false)}>
+              <NavLink
+                className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
+                to="/dashboard/task-list"
+              >
+                <FaList className="mr-2" /> Task List
+              </NavLink>
+            </button>
           </li>
           <li>
-            <NavLink
-              className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
-              to="/dashboard/my-submissions"
-            >
-              <FaTasks className="mr-2" /> My Submissions
-            </NavLink>
+            <button onClick={() => setIsSidebarOpen(false)}>
+              <NavLink
+                className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
+                to="/dashboard/my-submissions"
+              >
+                <FaTasks className="mr-2" /> My Submissions
+              </NavLink>
+            </button>
           </li>
           <li>
-            <NavLink
-              className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
-              to="/dashboard/withdrawals"
-            >
-              <FaShoppingCart className="mr-2" /> Withdrawals
-            </NavLink>
+            <button onClick={() => setIsSidebarOpen(false)}>
+              <NavLink
+                className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
+                to="/dashboard/withdrawals"
+              >
+                <FaShoppingCart className="mr-2" /> Withdrawals
+              </NavLink>
+            </button>
           </li>
         </>
       )}
+
       {role === "buyer" && (
         <>
           <li>
@@ -118,37 +127,52 @@ const Dashboard = () => {
               </NavLink>
             </button>
           </li>
+          <li>
+            <button onClick={() => setIsSidebarOpen(false)}>
+              <NavLink
+                className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
+                to="/dashboard/payment-history"
+              >
+                <FaShoppingCart className="mr-2" /> Payment History
+              </NavLink>
+            </button>
+          </li>
         </>
       )}
       {role === "admin" && (
         <>
           <li>
-            <NavLink
-              className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
-              to="/dashboard/admin-home"
-            >
-              <FaHome className="mr-2" /> Home
-            </NavLink>
+            <button onClick={() => setIsSidebarOpen(false)}>
+              <NavLink
+                className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
+                to="/dashboard/admin-home"
+              >
+                <FaHome className="mr-2" /> Home
+              </NavLink>
+            </button>
           </li>
           <li>
-            <NavLink
-              className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
-              to="/dashboard/manage-users"
-            >
-              <FaUsers className="mr-2" /> Manage users
-            </NavLink>
+            <button onClick={() => setIsSidebarOpen(false)}>
+              <NavLink
+                className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
+                to="/dashboard/manage-users"
+              >
+                <FaUsers className="mr-2" /> Manage users
+              </NavLink>
+            </button>
           </li>
           <li>
-            <NavLink
-              className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
-              to="/dashboard/manage-tasks"
-            >
-              <FaCogs className="mr-2" /> Manage task
-            </NavLink>
+            <button onClick={() => setIsSidebarOpen(false)}>
+              <NavLink
+                className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
+                to="/dashboard/manage-tasks"
+              >
+                <FaCogs className="mr-2" /> Manage tasks
+              </NavLink>
+            </button>
           </li>
         </>
       )}
-
       <div className="divider"></div>
 
       {/* Shared Nav */}
@@ -187,11 +211,11 @@ const Dashboard = () => {
             </span>
           </button>
           <h1 className="text-2xl font-bold text-green-500">
-            <NavLink to="/" className="text-xl">
+            <Link to="/" className="text-xl">
               <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 -ml-2 md:-ml-0">
                 QuickTasker
               </span>
-            </NavLink>
+            </Link>
           </h1>
         </div>
         <div className="flex items-center space-x-4">

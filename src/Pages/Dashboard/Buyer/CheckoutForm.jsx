@@ -101,7 +101,7 @@ const CheckoutForm = ({ purchaseInfo }) => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white shadow-md rounded-lg p-8 max-w-lg w-full">
-        <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
+        <h2 className="text-2xl font-bold text-center mb-6">
           Complete Your Payment
         </h2>
         <form onSubmit={handleSubmit} className="space-y-6">

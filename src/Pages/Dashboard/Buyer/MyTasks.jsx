@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useGetUserCoins from "../../../Hooks/useGetUserCoins";
+import toast from "react-hot-toast";
 
 const MyTasks = () => {
   const { user } = useAuth();
@@ -48,8 +49,11 @@ const MyTasks = () => {
           //delete task and refill coins
           const res = await axiosSecure.patch("/delete-refill-task", task);
           console.log(res.data);
-          refetch();
-          refetchForCoins();
+          if (res.data.message) {
+            toast.success(res.data.message);
+            refetch();
+            refetchForCoins();
+          }
 
           // show success message
           Swal.fire({
@@ -74,9 +78,7 @@ const MyTasks = () => {
   return (
     <div className="container mx-auto p-4">
       {/* Heading */}
-      <h1 className="text-3xl font-bold text-green-500 mb-6 text-center">
-        My Tasks
-      </h1>
+      <h1 className="text-3xl font-bold mb-6 text-center">My Tasks</h1>
       <div className="overflow-x-auto">
         <table className="table w-full table-auto shadow-md border border-gray-200 rounded-lg">
           {/* head */}

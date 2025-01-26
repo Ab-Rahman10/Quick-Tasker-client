@@ -105,9 +105,7 @@ const AddNewTask = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center py-8">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-3xl">
-        <h2 className="text-3xl font-bold text-green-500 mb-6 text-center">
-          Add New Task
-        </h2>
+        <h2 className="text-3xl font-bold mb-6 text-center">Add New Task</h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Task Title */}

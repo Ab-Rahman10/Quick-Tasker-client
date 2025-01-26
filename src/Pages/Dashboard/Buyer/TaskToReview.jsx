@@ -58,7 +58,7 @@ const TaskToReview = ({ refetch: refetchStats, approvedRefetch }) => {
       const { data } = await axiosSecure.patch("/reject-task", submissionData);
       console.log(data);
 
-      if (data.status === "success") {
+      if (data.message === "success") {
         toast.success("Task has been rejected successfully!");
       }
       refetchStats();

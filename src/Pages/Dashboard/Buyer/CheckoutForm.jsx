@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import useGetUserCoins from "../../../Hooks/useGetUserCoins";
 
 const CheckoutForm = ({ purchaseInfo }) => {
   const stripe = useStripe();
@@ -12,6 +13,7 @@ const CheckoutForm = ({ purchaseInfo }) => {
   const [clientSecret, setClientSecret] = useState("");
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [, , refetchForCoins] = useGetUserCoins();
 
   useEffect(() => {
     getPaymentIntent();
@@ -88,6 +90,7 @@ const CheckoutForm = ({ purchaseInfo }) => {
         if (updateCoinData?.modifiedCount > 0) {
           toast.success(`Purchase successful!`);
           navigate("/dashboard/payment-history");
+          refetchForCoins();
         }
       } catch (err) {
         console.error("Failed to save order:", err);

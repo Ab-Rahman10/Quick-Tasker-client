@@ -108,7 +108,9 @@ const MyTasks = () => {
                   <td>{idx + 1}</td>
                   <td>{task.title}</td>
                   <td className="text-center">{task.required_workers}</td>
-                  <td className="text-center">{task.payable_amount}</td>
+                  <td className="text-center text-amber-500">
+                    {task.payable_amount}
+                  </td>
                   <td>{task.detail.slice(0, 20)}....</td>
                   <td className="text-center">{task.compilation_date}</td>
                   <td className="flex space-x-2">

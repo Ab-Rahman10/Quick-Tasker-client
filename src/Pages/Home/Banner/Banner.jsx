@@ -26,7 +26,10 @@ const Slider = () => {
     >
       <SwiperSlide>
         <div className="relative">
-          <img className="w-full md:h-[550px] h-96 object-cover" src={slide1} />
+          <img
+            className="w-full md:h-[550px] h-96 object-cover"
+            src={"https://i.ibb.co.com/gT2vxBM/14600964-5495156.jpg"}
+          />
           <div className="bg-black/75 absolute inset-0 z-10"></div>
           <div className="absolute top-[20%] left-[5%] md:left-[15%] z-20">
             <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold font-CinzelDecorative text-white mb-1">
@@ -48,7 +51,10 @@ const Slider = () => {
       </SwiperSlide>
       <SwiperSlide>
         <div className="relative">
-          <img className="w-full md:h-[550px] h-96 object-cover" src={slide2} />
+          <img
+            className="w-full md:h-[550px] h-96 object-cover"
+            src={"https://i.ibb.co.com/H2bPQvG/slide-min.jpg"}
+          />
           <div className="bg-black/75 absolute inset-0 z-10"></div>
           <div className="absolute top-[20%] left-[5%] md:left-[15%] z-20">
             <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold font-CinzelDecorative text-white mb-1">
@@ -70,7 +76,10 @@ const Slider = () => {
       </SwiperSlide>
       <SwiperSlide>
         <div className="relative">
-          <img className="w-full md:h-[550px] h-96 object-cover" src={slide3} />
+          <img
+            className="w-full md:h-[550px] h-96 object-cover"
+            src={"https://i.ibb.co.com/K7J7GjQ/6400254-min.jpg"}
+          />
           <div className="bg-black/75 absolute inset-0 z-10"></div>
           <div className="absolute top-[20%] left-[5%] md:left-[15%] z-20">
             <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold font-CinzelDecorative text-white mb-1">

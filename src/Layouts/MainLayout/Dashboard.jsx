@@ -224,9 +224,11 @@ const Dashboard = () => {
             <p className="font-medium text-gray-800">{user?.displayName}</p>
             <p className="text-sm text-gray-500">
               {role} |{" "}
-              <span className="text-amber-500 font-bold py-0.5 px-4 rounded-md bg-amber-100">
-                {role === "admin" ? null : coins ? coins : 0}
-              </span>{" "}
+              {role === "admin" ? null : (
+                <span className="text-amber-500 font-bold py-0.5 px-4 rounded-md bg-amber-100">
+                  {coins ? coins : 0}
+                </span>
+              )}
               {/* {role === "admin" ? null : "Coins"} */}
             </p>
           </div>

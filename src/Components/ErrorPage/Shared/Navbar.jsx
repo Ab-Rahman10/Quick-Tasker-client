@@ -224,17 +224,18 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end space-x-2">
-          <div className="hidden md:block">
-            {" "}
-            {role === "admin" ? null : (
-              <li className="flex items-center space-x-4 bg-gray-100 px-4 py-2 rounded-lg shadow-sm">
-                <button className="flex items-center space-x-2 text-gray-800 font-semibold hover:text-amber-500">
-                  <span>Available Coins:</span>
-                  <span className="text-amber-500 font-bold">{coins}</span>
-                </button>
-              </li>
-            )}
-          </div>
+          {user && (
+            <div className="hidden md:block">
+              {role === "admin" ? null : (
+                <li className="flex items-center space-x-4 bg-gray-100 px-4 py-2 rounded-lg shadow-sm">
+                  <button className="flex items-center space-x-2 text-gray-800 font-semibold hover:text-amber-500">
+                    <span>Available Coins:</span>
+                    <span className="text-amber-500 font-bold">{coins}</span>
+                  </button>
+                </li>
+              )}
+            </div>
+          )}
           <NavLink
             target="_blank"
             to="https://github.com/Ab-Rahman10"

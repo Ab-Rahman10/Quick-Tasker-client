@@ -37,8 +37,12 @@ const SignUp = () => {
       // update profile---------
       await userProfileUpdate(data.name, imageData.data.display_url);
       console.log("Profile Updated");
+      toast.success("Registration Successful! Welcome to QuickTaster.");
     } catch (err) {
       console.log(err);
+      toast.error(
+        "Registration Failed! Please check your details and try again."
+      );
     }
 
     // store user info in the database

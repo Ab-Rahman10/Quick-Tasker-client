@@ -100,7 +100,7 @@ const ManageUsers = () => {
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
-          <thead className="bg-green-500 text-white">
+          <thead className="bg-green-500 text-white border">
             <tr>
               <th>#</th>
               <th>Image</th>

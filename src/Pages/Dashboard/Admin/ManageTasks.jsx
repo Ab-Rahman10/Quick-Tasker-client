@@ -62,7 +62,7 @@ const ManageTasks = () => {
         Manage Tasks
       </h1>
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className="table border">
           {/* head */}
           <thead className="bg-green-500 text-white">
             <tr>

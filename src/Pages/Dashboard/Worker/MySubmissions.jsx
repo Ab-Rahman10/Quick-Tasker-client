@@ -19,8 +19,6 @@ const MySubmissions = () => {
     },
   });
 
-  console.log(submissions);
-
   if (isLoading)
     return (
       <div className="flex justify-center items-center h-screen">
@@ -61,7 +59,7 @@ const MySubmissions = () => {
               ) : (
                 submissions.map((sub, idx) => (
                   <tr
-                    key={sub.task_id}
+                    key={`${sub.task_id}-${idx}`}
                     className="border-b hover:bg-gray-50 text-gray-800"
                   >
                     <td className="py-3 px-6">{idx + 1}</td>

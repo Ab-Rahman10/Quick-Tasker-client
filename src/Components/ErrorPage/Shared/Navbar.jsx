@@ -58,14 +58,6 @@ const Navbar = () => {
               Dashboard
             </NavLink>
           </li>
-          {role === "admin" ? null : (
-            <li className="flex items-center space-x-4">
-              <button className="font-bold">
-                Available Coins:{" "}
-                <span className="text-amber-500 font-bold">{coins}</span>
-              </button>
-            </li>
-          )}
         </>
       ) : (
         <>
@@ -123,12 +115,19 @@ const Navbar = () => {
               tabIndex={0}
               className="menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow space-y-2"
             >
-              {role && (
-                <div className="flex items-center space-x-4 mb-5 border-b-2">
-                  <button className="font-bold">
-                    Available Coins:{" "}
-                    <span className="text-amber-500 font-bold">{coins}</span>
-                  </button>
+              {user && (
+                <div>
+                  {" "}
+                  {role !== "admin" && (
+                    <div className="flex items-center space-x-4 bg-gray-100 px-4 py-2 rounded-lg shadow-sm">
+                      <button className="flex items-center space-x-2 text-gray-800 font-semibold hover:text-amber-500">
+                        <span>Available Coins:</span>
+                        <span className="text-amber-500 font-bold">
+                          {coins}
+                        </span>
+                      </button>
+                    </div>
+                  )}
                 </div>
               )}
               <div>
@@ -143,30 +142,63 @@ const Navbar = () => {
                   Home
                 </NavLink>
               </div>
-              <div>
-                <NavLink
-                  to={`${
-                    role === "admin"
-                      ? "/dashboard/admin-home"
-                      : role === "buyer"
-                      ? "/dashboard/buyer-home"
-                      : "/dashboard/worker-home"
-                  }`}
-                  className={({ isActive }) =>
-                    isActive
-                      ? `font-bold border-b-2 border-green-500 transition duration-300`
-                      : ""
-                  }
-                >
-                  Dashboard
-                </NavLink>
-              </div>
               {user && (
                 <div>
-                  <button onClick={handleLogout} className="font-bold">
+                  <NavLink
+                    to={`${
+                      role === "admin"
+                        ? "/dashboard/admin-home"
+                        : role === "buyer"
+                        ? "/dashboard/buyer-home"
+                        : "/dashboard/worker-home"
+                    }`}
+                    className={({ isActive }) =>
+                      isActive
+                        ? `font-bold border-b-2 border-green-500 transition duration-300`
+                        : ""
+                    }
+                  >
+                    Dashboard
+                  </NavLink>
+                </div>
+              )}
+              {user ? (
+                <div>
+                  <button
+                    onClick={handleLogout}
+                    className="font-bold text-red-400"
+                  >
                     Log Out <TbLogout className="inline-flex text-xl ml-2" />
                   </button>
                 </div>
+              ) : (
+                <>
+                  {" "}
+                  <div>
+                    <NavLink
+                      to="/login"
+                      className={({ isActive }) =>
+                        isActive
+                          ? `font-bold border-b-2 border-green-500 transition duration-300`
+                          : ""
+                      }
+                    >
+                      Login
+                    </NavLink>
+                  </div>
+                  <div>
+                    <NavLink
+                      to="/signUp"
+                      className={({ isActive }) =>
+                        isActive
+                          ? `font-bold border-b-2 border-green-500 transition duration-300`
+                          : ""
+                      }
+                    >
+                      Registration
+                    </NavLink>
+                  </div>
+                </>
               )}
             </div>
           </div>
@@ -192,10 +224,21 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end space-x-2">
+          <div className="hidden md:block">
+            {" "}
+            {role === "admin" ? null : (
+              <li className="flex items-center space-x-4 bg-gray-100 px-4 py-2 rounded-lg shadow-sm">
+                <button className="flex items-center space-x-2 text-gray-800 font-semibold hover:text-amber-500">
+                  <span>Available Coins:</span>
+                  <span className="text-amber-500 font-bold">{coins}</span>
+                </button>
+              </li>
+            )}
+          </div>
           <NavLink
             target="_blank"
             to="https://github.com/Ab-Rahman10"
-            className="bg-green-500 text-white py-1.5 px-3 rounded-md hover:bg-green-500 transition duration-300 font-normal md:font-semibold whitespace-nowrap text-sm md:text-base"
+            className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-500 transition duration-300 font-normal md:font-semibold whitespace-nowrap text-sm md:text-base"
           >
             Join as Developer
           </NavLink>

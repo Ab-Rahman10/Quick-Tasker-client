@@ -41,7 +41,7 @@ const TaskToReview = ({ refetch: refetchStats, approvedRefetch }) => {
   const handleApprove = async (submissionData) => {
     try {
       const { data } = await axiosSecure.patch("/approve-task", submissionData);
-      if (data.status === "success") {
+      if (data.message === "success") {
         toast.success("Task has been approved");
       }
       refetch();

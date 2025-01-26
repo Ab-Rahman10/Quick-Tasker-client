@@ -238,7 +238,7 @@ const Navbar = () => {
           )}
           <NavLink
             target="_blank"
-            to="https://github.com/Ab-Rahman10"
+            to="https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-Ab-Rahman10"
             className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-500 transition duration-300 font-normal md:font-semibold whitespace-nowrap text-sm md:text-base"
           >
             Join as Developer

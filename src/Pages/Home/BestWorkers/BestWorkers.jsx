@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { motion } from "framer-motion";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const BestWorkers = () => {
@@ -21,14 +22,35 @@ const BestWorkers = () => {
 
   return (
     <div className="my-10 w-11/12 mx-auto">
-      <h2 className="text-3xl md:text-4xl text-center font-bold mb-8">
+      <motion.h2
+        className="text-3xl md:text-4xl text-center font-bold mb-8"
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+      >
         Our Best Workers
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      </motion.h2>
+      <motion.div
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: { opacity: 0 },
+          visible: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.2,
+            },
+          },
+        }}
+      >
         {bestWorkers.map((worker) => (
-          <div
+          <motion.div
             key={worker._id}
-            className="flex flex-col items-center bg-white rounded-lg shadow-lg p-6 transform transition hover:scale-105 hover:shadow-xl"
+            className="flex flex-col items-center bg-white rounded-lg shadow-lg p-6"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
           >
             {/* Profile Picture */}
             <div className="w-24 h-24 overflow-hidden rounded-full border-4 border-green-500">
@@ -54,9 +76,9 @@ const BestWorkers = () => {
                 </span>
               </p>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

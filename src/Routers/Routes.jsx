@@ -115,7 +115,7 @@ const router = createBrowserRouter([
           </BuyerRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/task/${params.id}`),
+          fetch(`https://quick-tasker-server.vercel.app/task/${params.id}`),
       },
       {
         path: "payment",
@@ -176,7 +176,9 @@ const router = createBrowserRouter([
           </WorkerRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/task-details/${params.id}`),
+          fetch(
+            `https://quick-tasker-server.vercel.app/task-details/${params.id}`
+          ),
       },
     ],
   },

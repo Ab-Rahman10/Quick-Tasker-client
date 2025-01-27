@@ -5,7 +5,6 @@ QuickTaster is an intuitive web application designed to simplify task management
 ## Admin Credentials
 
 - **Username**: Ab Rahman
-- **Email**: abr03348@gmail.com
 - **Password**: Aa1111
 
 ## Live Site URL

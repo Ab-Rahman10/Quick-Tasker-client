@@ -44,7 +44,7 @@ const Withdrawals = () => {
         navigate("/dashboard/task-list");
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       toast.error(
         "There was an issue with your withdrawal request. Please try again."
       );

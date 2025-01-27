@@ -22,7 +22,7 @@ const TaskUpdateForm = () => {
         `/task/${taskData._id}`,
         updateData
       );
-      console.log(data);
+      // console.log(data);
 
       if (data.modifiedCount > 0) {
         toast.success("Task Updated successfully!");

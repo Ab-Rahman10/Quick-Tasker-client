@@ -23,7 +23,7 @@ const MyTasks = () => {
     },
   });
 
-  console.log(tasks);
+  // console.log(tasks);
 
   if (isLoading) {
     return (
@@ -48,7 +48,7 @@ const MyTasks = () => {
         try {
           //delete task and refill coins
           const res = await axiosSecure.patch("/delete-refill-task", task);
-          console.log(res.data);
+          // console.log(res.data);
           if (res.data.message) {
             toast.success(res.data.message);
             refetch();
@@ -62,7 +62,7 @@ const MyTasks = () => {
             icon: "success",
           });
         } catch (err) {
-          console.log(err);
+          // console.log(err);
 
           // show error message
           Swal.fire({

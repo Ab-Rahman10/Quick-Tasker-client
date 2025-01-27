@@ -56,7 +56,7 @@ const ManageUsers = () => {
             }
           });
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     }
 
@@ -86,7 +86,7 @@ const ManageUsers = () => {
             refetch();
           }
         } catch (err) {
-          console.log(err);
+          // console.log(err);
         }
       }
     });

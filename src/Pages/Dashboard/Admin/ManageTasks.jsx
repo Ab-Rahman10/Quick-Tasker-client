@@ -50,7 +50,7 @@ const ManageTasks = () => {
             refetch();
           }
         } catch (err) {
-          console.log(err);
+          // console.log(err);
         }
       }
     });

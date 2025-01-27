@@ -84,17 +84,17 @@ const AddNewTask = () => {
       submission_info: data.submissionInfo,
       task_image: imageData.data.display_url,
     };
-    console.log(taskData);
+    // console.log(taskData);
 
     if (imageData.success) {
       try {
         const { data } = await axiosSecure.post("/task", taskData);
-        console.log(data);
+        // console.log(data);
         toast.success("Task added successfully!");
         refetch();
         navigate("/dashboard/my-tasks");
       } catch (err) {
-        console.log("Task data store problem", err);
+        // console.log("Task data store problem", err);
       }
     }
 

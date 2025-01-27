@@ -19,7 +19,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logoutUser().then(() => {
-      console.log("Log Out Successful");
+      // console.log("Log Out Successful");
     });
   };
 

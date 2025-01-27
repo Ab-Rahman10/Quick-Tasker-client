@@ -20,7 +20,7 @@ const PaymentHistory = () => {
     },
   });
 
-  console.log(orders);
+  // console.log(orders);
 
   if (isLoading) {
     return (

@@ -27,7 +27,7 @@ const CheckoutForm = ({ purchaseInfo }) => {
       );
       setClientSecret(data.clientSecret);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

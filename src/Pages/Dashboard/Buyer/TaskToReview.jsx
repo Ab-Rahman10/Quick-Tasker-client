@@ -48,7 +48,7 @@ const TaskToReview = ({ refetch: refetchStats, approvedRefetch }) => {
       refetchStats();
       approvedRefetch();
     } catch (err) {
-      console.log("Error from approve task", err);
+      // console.log("Error from approve task", err);
     }
   };
 
@@ -56,7 +56,7 @@ const TaskToReview = ({ refetch: refetchStats, approvedRefetch }) => {
   const handleReject = async (submissionData) => {
     try {
       const { data } = await axiosSecure.patch("/reject-task", submissionData);
-      console.log(data);
+      // console.log(data);
 
       if (data.message === "success") {
         toast.success("Task has been rejected successfully!");
@@ -64,7 +64,7 @@ const TaskToReview = ({ refetch: refetchStats, approvedRefetch }) => {
       refetchStats();
       refetch();
     } catch (err) {
-      console.log("Error from reject task", err);
+      // console.log("Error from reject task", err);
     }
   };
 

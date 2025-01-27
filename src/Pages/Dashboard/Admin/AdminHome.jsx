@@ -43,20 +43,20 @@ const AdminStats = () => {
     },
   });
 
-  console.log(withdraws);
+  // console.log(withdraws);
 
   const pendingWithdraws = withdraws.filter(
     (pendingWithdraw) => pendingWithdraw.status === "pending"
   );
 
-  console.log(pendingWithdraws);
+  // console.log(pendingWithdraws);
 
   // Total successful withdrawals
   const totalPayments = withdraws
     .filter((withdraw) => withdraw.status === "Approved")
     .reduce((total, withdraw) => total + withdraw.coins / 20, 0); // Assuming 20 coins = $1
 
-  console.log(totalPayments);
+  // console.log(totalPayments);
 
   if (isLoading || withdrawLoading) {
     return (
@@ -79,7 +79,7 @@ const AdminStats = () => {
         toast.error(data.message);
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

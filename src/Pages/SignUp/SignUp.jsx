@@ -36,10 +36,10 @@ const SignUp = () => {
       navigate("/");
       // update profile---------
       await userProfileUpdate(data.name, imageData.data.display_url);
-      console.log("Profile Updated");
+      // console.log("Profile Updated");
       toast.success("Registration Successful! Welcome to QuickTaster.");
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       toast.error(
         "Registration Failed! Please check your details and try again."
       );

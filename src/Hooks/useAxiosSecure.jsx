@@ -19,7 +19,7 @@ const useAxiosSecure = () => {
       return config;
     },
     (err) => {
-      console.log("Caught from inceptors req", err);
+      // console.log("Caught from inceptors req", err);
 
       return Promise.reject(err);
     }
@@ -32,7 +32,7 @@ const useAxiosSecure = () => {
     },
     (err) => {
       // Logout the user if the token is invalid and kick him to login page.
-      console.log("Caught from inceptors res", err);
+      // console.log("Caught from inceptors res", err);
       const status = err.response.status;
       if (status === 401 || status === 403) {
         logoutUser();

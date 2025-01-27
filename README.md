@@ -5,24 +5,24 @@ QuickTaster is an intuitive web application designed to simplify task management
 ## Admin Credentials
 
 - **Username**: Ab Rahman
+- **Email**: abr03348@gmail.com
 - **Password**: Aa1111
 
 ## Live Site URL
 
-[https://quicktaster.com](https://quicktaster.com)
+[QuickTasker](https://quick-tasker-d56fa.web.app/)
 
-## Features
+# Features
 
-- **Task Scheduling**: Organize your daily tasks with ease to never miss a deadline again.
-- **Team Collaboration**: Seamlessly collaborate with your team to share tasks and track progress.
-- **Analytics Dashboard**: Gain valuable insights into team productivity with detailed analytics.
-- **Real-time Notifications**: Get notified instantly about important updates and task changes.
-- **Secure Authentication**: Secure login and authentication using Firebase and Stripe for transactions.
-- **Responsive Design**: Fully responsive UI that adapts to mobile, tablet, and desktop screens using Tailwind CSS.
-- **Customizable Themes**: Choose between multiple themes to personalize your experience.
-- **Drag and Drop Task Management**: Easily drag and drop tasks to manage priority.
-- **Calendar Integration**: Sync your tasks with Google Calendar for easy tracking.
-- **Stripe Payment Integration**: Manage subscriptions and payments securely with Stripe.
+- **Task Creation and Management**: Easily create, edit, and manage tasks to stay organized.
+- **User Authentication**: Secure login system powered by Firebase.
+- **Notifications**: Receive alerts and notifications with SweetAlert2 and React Hot Toast.
+- **Responsive Design**: Fully responsive UI built with Tailwind CSS and DaisyUI for seamless use on any device.
+- **Date Selection**: Effortlessly choose dates for tasks using React Datepicker.
+- **Real-time Data Handling**: Manage and sync data using Firebase Realtime Database.
+- **Reusable Components**: Built with React Hook Form for efficient and flexible forms.
+- **Interactive Animations**: Enhance the user experience with animations using Framer Motion and Swiper for carousels.
+- **Icons and Visuals**: Includes Heroicons and FontAwesome for visually appealing designs.
 
 ## Technologies Used
 

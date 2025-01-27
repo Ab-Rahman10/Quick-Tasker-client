@@ -76,36 +76,49 @@ const ManageTasks = () => {
             </tr>
           </thead>
           <tbody>
-            {tasks.map((task, idx) => (
-              <tr key={task._id}>
-                <td>{idx + 1}</td>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle h-12 w-12">
-                        <img src={task.task_image} alt={task.title} />
+            {tasks.length === 0 ? (
+              <tr>
+                <td
+                  colSpan="9"
+                  className="px-4 py-2 text-center text-xl text-gray-500"
+                >
+                  Not found
+                </td>
+              </tr>
+            ) : (
+              tasks.map((task, idx) => (
+                <tr key={task._id}>
+                  <td>{idx + 1}</td>
+                  <td>
+                    <div className="flex items-center gap-3">
+                      <div className="avatar">
+                        <div className="mask mask-squircle h-12 w-12">
+                          <img src={task.task_image} alt={task.title} />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td className="font-bold">{task.title}</td>
-                <td>{task.detail.slice(0, 50)}...</td>
-                <td>{task.required_workers}</td>
-                <td>
-                  <span className="text-amber-500">{task.payable_amount}</span>{" "}
-                </td>
+                  <td className="font-bold">{task.title}</td>
+                  <td>{task.detail.slice(0, 50)}...</td>
+                  <td>{task.required_workers}</td>
+                  <td>
+                    <span className="text-amber-500">
+                      {task.payable_amount}
+                    </span>{" "}
+                  </td>
 
-                <th className="space-x-2">
-                  <button
-                    onClick={() => handleDelete(task._id)}
-                    className="py-1 px-3 rounded-md bg-red-500 text-white font-medium"
-                  >
-                    Delete
-                  </button>
-                </th>
-              </tr>
-            ))}
+                  <th className="space-x-2">
+                    <button
+                      onClick={() => handleDelete(task._id)}
+                      className="py-1 px-3 rounded-md bg-red-500 text-white font-medium"
+                    >
+                      Delete
+                    </button>
+                  </th>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

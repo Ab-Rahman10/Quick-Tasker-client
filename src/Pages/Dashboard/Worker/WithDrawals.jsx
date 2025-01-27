@@ -105,7 +105,7 @@ const Withdrawals = () => {
               <input
                 type="number"
                 id="coinToWithdraw"
-                className="mt-1 block w-full p-2 border border-green-300 rounded-md focus:border-green-500 focus:ring focus:ring-green-500 transition-all duration-200 ease-in-out"
+                className="mt-1 block w-full p-2 border rounded-md focus:border-green-500 focus:ring focus:ring-green-500 transition-all duration-200 ease-in-out"
                 placeholder="Enter amount"
                 min="0"
                 max={coins}

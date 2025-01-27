@@ -75,6 +75,9 @@ const AdminStats = () => {
         withdrawRefetch();
         refetch();
       }
+      if (data.message === "Insufficient coins") {
+        toast.error(data.message);
+      }
     } catch (err) {
       console.log(err);
     }

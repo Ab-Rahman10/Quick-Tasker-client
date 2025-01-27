@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
@@ -18,6 +19,20 @@ const MySubmissions = () => {
       return data;
     },
   });
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10; // Number of submissions to display per page
+
+  const totalPages = Math.ceil(submissions.length / itemsPerPage);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const paginatedSubmissions = submissions.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   if (isLoading)
     return (
@@ -47,7 +62,7 @@ const MySubmissions = () => {
             </thead>
             {/* body */}
             <tbody>
-              {submissions.length === 0 ? (
+              {paginatedSubmissions.length === 0 ? (
                 <tr>
                   <td
                     colSpan="6"
@@ -57,12 +72,14 @@ const MySubmissions = () => {
                   </td>
                 </tr>
               ) : (
-                submissions.map((sub, idx) => (
+                paginatedSubmissions.map((sub, idx) => (
                   <tr
                     key={`${sub.task_id}-${idx}`}
                     className="border-b hover:bg-gray-50 text-gray-800"
                   >
-                    <td className="py-3 px-6">{idx + 1}</td>
+                    <td className="py-3 px-6">
+                      {(currentPage - 1) * itemsPerPage + idx + 1}
+                    </td>
                     <td className="py-3 px-6">{sub.title}</td>
                     <td className="py-3 px-6">{sub.buyer_name}</td>
                     <td className="py-3 px-6 text-amber-500 ">
@@ -89,6 +106,36 @@ const MySubmissions = () => {
               )}
             </tbody>
           </table>
+          {/* Pagination */}
+          <div className="flex justify-center items-center mt-4">
+            <button
+              className="px-4 py-2 mx-1 bg-green-500 text-white rounded-md disabled:opacity-50"
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </button>
+            {Array.from({ length: totalPages }, (_, idx) => (
+              <button
+                key={idx}
+                className={`px-4 py-2 mx-1 rounded-md ${
+                  currentPage === idx + 1
+                    ? "bg-green-700 text-white"
+                    : "bg-gray-200 text-gray-700"
+                }`}
+                onClick={() => handlePageChange(idx + 1)}
+              >
+                {idx + 1}
+              </button>
+            ))}
+            <button
+              className="px-4 py-2 mx-1 bg-green-500 text-white rounded-md disabled:opacity-50"
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -3,12 +3,14 @@ import useGetUserCoins from "../../../Hooks/useGetUserCoins";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Withdrawals = () => {
   const { user } = useAuth();
   const [coins] = useGetUserCoins();
   const axiosSecure = useAxiosSecure();
   const [coinToWithdraw, setCoinToWithdraw] = useState(" ");
+  const navigate = useNavigate();
 
   const handleCoinChange = (e) => {
     const value = Math.min(e.target.value, coins); // it returns min value
@@ -39,6 +41,7 @@ const Withdrawals = () => {
         toast.success(
           "Your withdrawal request has been submitted successfully!"
         );
+        navigate("/dashboard/task-list");
       }
     } catch (err) {
       console.log(err);
@@ -102,7 +105,7 @@ const Withdrawals = () => {
               <input
                 type="number"
                 id="coinToWithdraw"
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                className="mt-1 block w-full p-2 border border-green-300 rounded-md focus:border-green-500 focus:ring focus:ring-green-500 transition-all duration-200 ease-in-out"
                 placeholder="Enter amount"
                 min="0"
                 max={coins}
@@ -123,7 +126,7 @@ const Withdrawals = () => {
               <input
                 type="number"
                 id="withdrawAmount"
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md text-green-500"
+                className="mt-1 block w-full p-2 border border-gray-300 rounded-md text-green-500 focus:border-green-500 focus:ring focus:ring-green-500 transition-all duration-200 ease-in-out"
                 value={coinToWithdraw / 20}
                 readOnly
               />
@@ -140,7 +143,7 @@ const Withdrawals = () => {
               <select
                 name="payment_system"
                 id="paymentSystem"
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:border-green-500 focus:ring focus:ring-green-500 transition-all duration-200 ease-in-out"
                 required
               >
                 <option value="bkash">Bkash</option>
@@ -161,7 +164,7 @@ const Withdrawals = () => {
                 name="account_number"
                 type="text"
                 id="accountNumber"
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:border-green-500 focus:ring focus:ring-green-500 transition-all duration-200 ease-in-out"
                 placeholder="Enter account number"
                 required
               />
@@ -169,7 +172,7 @@ const Withdrawals = () => {
 
             {/* Withdraw Button */}
             <div className="mt-6 text-center">
-              {coins >= 200 ? (
+              {coinToWithdraw >= 200 ? (
                 <button
                   type="submit"
                   className="w-full p-2 bg-green-500 text-white rounded-md"

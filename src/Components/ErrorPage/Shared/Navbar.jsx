@@ -104,7 +104,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navbar bg-base-100">
+      <div className="navbar bg-green-100 opacity-90 backdrop-blur-md sticky top-0 z-50 ">
         <div className="navbar-start">
           <div className="dropdown z-50">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -128,8 +128,7 @@ const Navbar = () => {
               className="menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow space-y-2"
             >
               {user && (
-                <div>
-                  {" "}
+                <div className="border border-amber-500 rounded-md">
                   {role !== "admin" && (
                     <div className="flex items-center space-x-4 bg-gray-100 px-4 py-2 rounded-lg shadow-sm">
                       <button className="flex items-center space-x-2 text-gray-800 font-semibold hover:text-amber-500">
@@ -152,6 +151,18 @@ const Navbar = () => {
                   }
                 >
                   Home
+                </NavLink>
+              </div>
+              <div>
+                <NavLink
+                  to="/all-tasks"
+                  className={({ isActive }) =>
+                    isActive
+                      ? `font-bold border-b-2 border-green-500 transition duration-300`
+                      : ""
+                  }
+                >
+                  All Tasks
                 </NavLink>
               </div>
               {user && (
@@ -227,9 +238,9 @@ const Navbar = () => {
               <li>
                 <button
                   onClick={handleLogout}
-                  className="py-1.5 px-3 bg-red-500 text-white rounded-md transition duration-300"
+                  className="py-1.5 px-3 border rounded-md transition duration-300 inline-flex  text-red-500 font-semibold items-center gap-2"
                 >
-                  Log Out
+                  Log Out <TbLogout />
                 </button>
               </li>
             )}
@@ -237,10 +248,10 @@ const Navbar = () => {
         </div>
         <div className="navbar-end space-x-2">
           {user && (
-            <div className="hidden md:block">
+            <div className="hidden md:block border border-amber-500 rounded-md">
               {role === "admin" ? null : (
                 <li className="flex items-center space-x-4 bg-gray-100 px-4 py-2 rounded-lg shadow-sm">
-                  <button className="flex items-center space-x-2 text-gray-800 font-semibold hover:text-amber-500">
+                  <button className="flex items-center space-x-2 text-gray-800 hover:text-amber-500">
                     <span>Available Coins:</span>
                     <span className="text-amber-500 font-bold">{coins}</span>
                   </button>

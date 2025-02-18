@@ -1,8 +1,15 @@
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { motion } from "framer-motion";
 
 const TaskProgress = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
+
   return (
-    <section className="py-12 sm:py-20 bg-gray-50">
+    <section className="py-12 sm:py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-8 text-center">
         {/* Heading */}
         <motion.h2
@@ -40,6 +47,46 @@ const TaskProgress = () => {
           You've completed <span className="text-green-600 font-bold">80%</span>{" "}
           of your task today. Keep going!
         </motion.p>
+
+        {/* Task Details (with AOS) */}
+        <div className="mt-10 space-y-6 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="bg-white p-6 rounded-lg shadow-md" data-aos="fade-up">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">
+              Task Summary
+            </h3>
+            <ul className="list-disc list-inside text-left text-gray-600">
+              <li>Task Title: "Complete Dashboard Design"</li>
+              <li>Start Date: 15th Feb 2025</li>
+              <li>Due Date: 20th Feb 2025</li>
+              <li>Assigned to: John Doe</li>
+            </ul>
+          </div>
+
+          <div
+            className="bg-white p-6 rounded-lg shadow-md"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">
+              Estimated Time Remaining
+            </h3>
+            <p className="text-gray-600">Approximate time left: 2 hours</p>
+          </div>
+
+          <div
+            className="bg-white p-6 rounded-lg shadow-md"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">
+              Keep Up the Good Work!
+            </h3>
+            <p className="text-gray-600">
+              You're doing great! Stay focused and you'll complete your task in
+              no time. Remember, progress is progress, no matter how small.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );

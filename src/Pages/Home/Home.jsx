@@ -5,6 +5,8 @@ import TaskProgress from "./TaskProgress/TaskProgress";
 import Banner from "./Banner/Banner";
 import BestWorkers from "./BestWorkers/BestWorkers";
 import Testimonials from "./Testimonials/Testimonials";
+import FAQ from "./FAQ/FAQ";
+import TaskReminder from "./TaskReminder/TaskReminder";
 
 const Home = () => {
   return (
@@ -14,6 +16,8 @@ const Home = () => {
       <ServicesSection></ServicesSection>
       <WhyQuickTasker></WhyQuickTasker>
       <TaskProgress></TaskProgress>
+      <TaskReminder></TaskReminder>
+      <FAQ></FAQ>
       <Testimonials></Testimonials>
     </div>
   );

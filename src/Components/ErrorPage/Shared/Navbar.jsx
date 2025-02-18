@@ -37,6 +37,18 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/all-tasks"
+          className={({ isActive }) =>
+            isActive
+              ? `font-bold border-b-2 border-green-500 transition duration-300`
+              : ""
+          }
+        >
+          All Tasks
+        </NavLink>
+      </li>
 
       {user ? (
         <>

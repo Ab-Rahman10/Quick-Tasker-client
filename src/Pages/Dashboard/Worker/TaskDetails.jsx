@@ -1,12 +1,12 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const TaskDetails = () => {
   const task = useLoaderData();
   const { user } = useAuth();
-  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -26,7 +26,7 @@ const TaskDetails = () => {
       status: "pending",
     };
 
-    const { data } = await axiosSecure.post("/submission", submission_info);
+    const { data } = await axiosPublic.post("/submission", submission_info);
     if (data.insertedId) {
       toast.success("Task submitted successfully!");
       navigate("/dashboard/task-list");

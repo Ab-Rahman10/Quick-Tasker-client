@@ -23,6 +23,9 @@ import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
 import ManageTasks from "../Pages/Dashboard/Admin/ManageTasks";
 import Payment from "../Pages/Dashboard/Buyer/Payment";
 import PaymentHistory from "../Pages/Dashboard/Buyer/PaymentHistory";
+import ContactUs from "../Pages/Home/FAQ/FAQ";
+import AllTasks from "../Pages/AllTasks/AllTasks";
+import TaskDetailPage from "../Pages/TaskDetailPage/TaskDetailPage";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +44,16 @@ const router = createBrowserRouter([
       {
         path: "/signUp",
         element: <SignUp></SignUp>,
+      },
+      {
+        path: "/all-tasks",
+        element: <AllTasks></AllTasks>,
+      },
+      {
+        path: "/task-detail-page/:id",
+        element: <TaskDetailPage></TaskDetailPage>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/task-detail-page/${params.id}`),
       },
     ],
   },

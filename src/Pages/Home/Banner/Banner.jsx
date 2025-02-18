@@ -28,7 +28,7 @@ const Slider = () => {
         <div className="relative">
           <img
             className="w-full md:h-[550px] h-96 object-cover"
-            src={"https://i.ibb.co.com/gT2vxBM/14600964-5495156.jpg"}
+            src={"https://i.ibb.co.com/1tLPQGhv/ZZZZZ2898-min.jpg"}
           />
           <div className="bg-black/75 absolute inset-0 z-10"></div>
           <div className="absolute top-[20%] left-[5%] md:left-[15%] z-20">
@@ -53,7 +53,9 @@ const Slider = () => {
         <div className="relative">
           <img
             className="w-full md:h-[550px] h-96 object-cover"
-            src={"https://i.ibb.co.com/H2bPQvG/slide-min.jpg"}
+            src={
+              "https://i.ibb.co.com/1t9tVHDN/vecteezy-business-finance-technology-and-investment-concept-stock-14000797-min.jpg"
+            }
           />
           <div className="bg-black/75 absolute inset-0 z-10"></div>
           <div className="absolute top-[20%] left-[5%] md:left-[15%] z-20">
@@ -78,7 +80,7 @@ const Slider = () => {
         <div className="relative">
           <img
             className="w-full md:h-[550px] h-96 object-cover"
-            src={"https://i.ibb.co.com/K7J7GjQ/6400254-min.jpg"}
+            src={"https://i.ibb.co.com/1Y81wxSg/updated-image-min.jpg"}
           />
           <div className="bg-black/75 absolute inset-0 z-10"></div>
           <div className="absolute top-[20%] left-[5%] md:left-[15%] z-20">

@@ -43,9 +43,11 @@ const Slider = () => {
               Start today and see your productivity soar!
             </p>
 
-            <button className="mt-5 px-5 py-1 md:px-8 md:py-3 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition">
-              Get Started
-            </button>
+            <Link to="/all-tasks">
+              <button className="mt-5 px-5 py-1 md:px-8 md:py-3 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition">
+                Get Started
+              </button>
+            </Link>
           </div>
         </div>
       </SwiperSlide>
@@ -70,9 +72,9 @@ const Slider = () => {
               Let’s take your task management to the next level.
             </p>
 
-            <button className="mt-5 px-5 py-1 md:px-8 md:py-3 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition">
+            {/* <button className="mt-5 px-5 py-1 md:px-8 md:py-3 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition">
               Track Progress
-            </button>
+            </button> */}
           </div>
         </div>
       </SwiperSlide>
@@ -94,10 +96,10 @@ const Slider = () => {
             <p className="text-gray-100 text-xs mt-6">
               Your team’s productivity, redefined.
             </p>
-
+            {/* 
             <button className="mt-5 px-5 py-1 md:px-8 md:py-3 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition">
               Collaborate Now
-            </button>
+            </button> */}
           </div>
         </div>
       </SwiperSlide>

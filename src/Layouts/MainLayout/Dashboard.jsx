@@ -48,7 +48,7 @@ const Dashboard = () => {
                 className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
                 to="/dashboard/worker-home"
               >
-                <FaHome className="mr-2" /> Home
+                <FaHome className="mr-2" /> Overview
               </NavLink>
             </button>
           </li>
@@ -93,7 +93,7 @@ const Dashboard = () => {
                 className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
                 to="/dashboard/buyer-home"
               >
-                <FaHome className="mr-2" /> Home
+                <FaHome className="mr-2" /> Overview
               </NavLink>
             </button>
           </li>
@@ -147,7 +147,7 @@ const Dashboard = () => {
                 className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
                 to="/dashboard/admin-home"
               >
-                <FaHome className="mr-2" /> Home
+                <FaHome className="mr-2" /> Overview
               </NavLink>
             </button>
           </li>
@@ -199,7 +199,7 @@ const Dashboard = () => {
     <div className="min-h-screen flex flex-col bg-gray-100">
       <Toaster />
       {/* Header Section */}
-      <header className="flex justify-between items-center bg-white shadow-md p-4">
+      <header className="flex justify-between items-center bg-white shadow-md p-4 sticky top-0 z-50">
         <div className="flex items-center ">
           {/* Sidebar Toggle Button for Mobile */}
           <button
@@ -250,17 +250,17 @@ const Dashboard = () => {
         <aside
           className={`lg:block ${
             isSidebarOpen
-              ? "absolute top-20 left-0 w-full bg-green-50 p-4 shadow-md z-50"
+              ? "absolute top-20 left-0 w-full bg-green-50 p-4 shadow-md z-50 "
               : "hidden"
           } lg:w-64 bg-green-50 p-4 shadow-md`}
         >
-          <nav>
+          <nav className="sticky top-24">
             <ul className="space-y-4">{navLinks}</ul>
           </nav>
         </aside>
 
         {/* Dashboard Main Content Area */}
-        <div className="lg:w-2/3 w-full  min-h-[calc(100vh-132px)]">
+        <div className=" w-full  min-h-[calc(100vh-132px)] border">
           <Outlet></Outlet>
         </div>
       </div>

@@ -76,7 +76,7 @@ const MyTasks = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="w-full mx-auto p-4">
       {/* Heading */}
       <h1 className="text-3xl font-bold mb-6 text-center">My Tasks</h1>
       <div className="overflow-x-auto">

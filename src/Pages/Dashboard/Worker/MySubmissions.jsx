@@ -43,7 +43,7 @@ const MySubmissions = () => {
 
   return (
     <div>
-      <div className="max-w-7xl mx-auto p-6">
+      <div className="w-full mx-auto p-6">
         <div className="overflow-x-auto bg-white p-4 rounded-lg shadow-md border border-gray-200">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
             My Submissions

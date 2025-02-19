@@ -13,7 +13,7 @@ const PurchaseCoin = () => {
       <h2 className="text-3xl font-extrabold text-center mb-8">
         Choose Your Plan
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 w-full mx-auto">
         {purchaseData.map((item, index) => (
           <div
             key={index}

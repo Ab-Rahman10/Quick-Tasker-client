@@ -84,7 +84,7 @@ const AdminStats = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
+    <div className="w-full mx-auto p-6">
       {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-5">
         {/* Total Workers */}
@@ -141,7 +141,7 @@ const AdminStats = () => {
       </div>
 
       {/* Withdraw request */}
-      <div className="mt-10 ml-5">
+      <div className="mt-10 ">
         <h1 className="text-3xl font-bold mb-6 text-center">
           Withdrawal Requests
         </h1>

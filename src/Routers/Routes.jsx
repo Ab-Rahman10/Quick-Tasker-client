@@ -176,7 +176,6 @@ const router = createBrowserRouter([
         path: "withdrawals",
         element: (
           <WorkerRoute>
-            {" "}
             <WithDrawals></WithDrawals>
           </WorkerRoute>
         ),

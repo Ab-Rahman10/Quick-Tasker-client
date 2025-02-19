@@ -57,10 +57,8 @@ const ManageTasks = () => {
   };
 
   return (
-    <div className="mt-5 ml-5">
-      <h1 className="text-3xl font-bold text-green-500 mb-6 text-center">
-        Manage Tasks
-      </h1>
+    <div className="mt-5 p-6">
+      <h1 className="text-3xl font-bold mb-6 text-center">Manage Tasks</h1>
       <div className="overflow-x-auto">
         <table className="table border">
           {/* head */}

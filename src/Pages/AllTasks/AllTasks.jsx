@@ -24,7 +24,7 @@ const AllTasks = () => {
   } = useQuery({
     queryKey: ["tasks"],
     queryFn: async () => {
-      const { data } = await axiosPublic.get("http://localhost:5000/all-tasks");
+      const { data } = await axiosPublic.get("/all-tasks");
       return data;
     },
   });

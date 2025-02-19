@@ -9,17 +9,27 @@ const WorkerHome = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
-  const {
-    data: submissions = [],
-    isLoading,
-    refetch,
-  } = useQuery({
+  // AOS initialization
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
+  const { data: submissions = [], isLoading } = useQuery({
     queryKey: [user?.email, "submissions"],
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/submissions/${user?.email}`);
+      if (!user?.email) return [];
+      const { data } = await axiosSecure.get(`/submissions/${user.email}`);
       return data;
     },
+    enabled: !!user?.email,
   });
+
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <progress className="progress w-56"></progress>
+      </div>
+    );
 
   // Total earning of worker
   const approvedSub = submissions.filter((sub) => sub.status === "Approved");
@@ -37,11 +47,6 @@ const WorkerHome = () => {
   const approvedSubmissions = submissions.filter(
     (sub) => sub.status === "Approved"
   );
-
-  // AOS initialization
-  useEffect(() => {
-    AOS.init();
-  }, []);
 
   return (
     <div className="w-full mx-auto p-6">

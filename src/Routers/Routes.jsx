@@ -27,6 +27,8 @@ import ContactUs from "../Pages/Home/FAQ/FAQ";
 import AllTasks from "../Pages/AllTasks/AllTasks";
 import TaskDetailPage from "../Pages/TaskDetailPage/TaskDetailPage";
 import Profile from "../Pages/Dashboard/Profile/Profile";
+import AboutUs from "../Pages/AboutUs/AboutUs";
+import ContactInfo from "../Pages/ContactInfo/ContactInfo";
 
 const router = createBrowserRouter([
   {
@@ -54,7 +56,17 @@ const router = createBrowserRouter([
         path: "/task-detail-page/:id",
         element: <TaskDetailPage></TaskDetailPage>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/task-detail-page/${params.id}`),
+          fetch(
+            `https://quick-tasker-server.vercel.app/task-detail-page/${params.id}`
+          ),
+      },
+      {
+        path: "/aboutUs",
+        element: <AboutUs></AboutUs>,
+      },
+      {
+        path: "/contact-info",
+        element: <ContactInfo></ContactInfo>,
       },
     ],
   },

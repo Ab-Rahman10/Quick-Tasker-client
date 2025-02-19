@@ -49,6 +49,30 @@ const Navbar = () => {
           All Tasks
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/aboutUs"
+          className={({ isActive }) =>
+            isActive
+              ? `font-bold border-b-2 border-green-500 transition duration-300`
+              : ""
+          }
+        >
+          About Us
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/contact-info"
+          className={({ isActive }) =>
+            isActive
+              ? `font-bold border-b-2 border-green-500 transition duration-300`
+              : ""
+          }
+        >
+          Contact Us
+        </NavLink>
+      </li>
 
       {user ? (
         <>
@@ -196,7 +220,6 @@ const Navbar = () => {
                 </div>
               ) : (
                 <>
-                  {" "}
                   <div>
                     <NavLink
                       to="/login"
@@ -232,7 +255,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu-horizontal px-1 space-x-10 flex items-center">
+          <ul className="menu-horizontal px-1 space-x-7 flex items-center">
             {navLinks}
             {user && (
               <li>

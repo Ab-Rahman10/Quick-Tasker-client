@@ -62,7 +62,7 @@ const Withdrawals = () => {
         {/* Coins and Withdrawal Amount Section */}
         <div className="space-y-6">
           {/* Current Coins */}
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center border border-green-400 p-4 rounded-md">
             <span className="text-lg font-medium text-gray-600">
               Current Coins:
             </span>
@@ -70,7 +70,7 @@ const Withdrawals = () => {
           </div>
 
           {/* Withdrawal Amount */}
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center border border-green-400 p-4 rounded-md">
             <span className="text-lg font-medium text-gray-600">
               Withdrawal Amount:
             </span>

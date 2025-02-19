@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaBell } from "react-icons/fa";
+import { FaBell, FaRegUser } from "react-icons/fa";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import useRole from "../../Hooks/useRole";
 import useAuth from "../../Hooks/useAuth";
@@ -179,6 +179,14 @@ const Dashboard = () => {
       <li>
         <NavLink
           className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
+          to="/dashboard/profile"
+        >
+          <FaRegUser className="mr-2" /> Profile
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          className="py-2 px-4 rounded-md text-gray-700 hover:bg-green-100 hover:text-green-500 flex items-center"
           to="/"
         >
           <FaHome className="mr-2" /> Home
@@ -232,11 +240,13 @@ const Dashboard = () => {
               {/* {role === "admin" ? null : "Coins"} */}
             </p>
           </div>
-          <img
-            src={user?.photoURL}
-            alt="User"
-            className="w-10 rounded-full border border-gray-300"
-          />
+          <Link to="/dashboard/profile">
+            <img
+              src={user?.photoURL}
+              alt="User"
+              className="w-10 rounded-full border border-gray-300"
+            />
+          </Link>
           <FaBell
             className="text-gray-500 hover:text-green-500 cursor-pointer"
             size={20}

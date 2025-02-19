@@ -9,8 +9,8 @@ const TaskProgress = () => {
   }, []);
 
   return (
-    <section className="py-12 sm:py-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-8 text-center">
+    <section className="pb-28">
+      <div className="w-11/12 lg:w-9/12 mx-auto text-center">
         {/* Heading */}
         <motion.h2
           className="text-3xl md:text-4xl font-bold mt-4 mb-8"

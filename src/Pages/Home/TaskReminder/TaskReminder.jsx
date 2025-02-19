@@ -9,13 +9,13 @@ const TaskReminder = () => {
 
   return (
     <div
-      className="p-8 rounded-lg container mx-auto mt-10"
+      className="rounded-lg w-11/12 lg:w-9/12 mx-auto"
       data-aos="fade-up"
       data-aos-duration="1000"
     >
       {/* Headline Section */}
       <div className="text-center mb-12" data-aos="fade-up">
-        <h3 className="text-4xl font-semibold text-gray-800">
+        <h3 className="text-4xl font-bold text-gray-800">
           Stay On Track with Your Task Reminder
         </h3>
         <p className="text-lg text-gray-500 mt-3">
@@ -65,13 +65,6 @@ const TaskReminder = () => {
           <span className="font-semibold text-green-500">High Priority</span>.
           Complete it as soon as possible to stay ahead of your schedule.
         </p>
-      </div>
-
-      {/* Task Reminder Button */}
-      <div className="text-center" data-aos="fade-up">
-        <button className="bg-green-500 hover:bg-green-600 text-white py-3 px-8 rounded-lg focus:outline-none transition duration-300">
-          Set Reminder
-        </button>
       </div>
     </div>
   );

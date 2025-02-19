@@ -1,32 +1,41 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { Link } from "react-router-dom";
 
 const WhyQuickTasker = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-in-out",
+      once: true,
+    });
+  }, []);
+
   return (
-    <div className="bg-gradient-to-r from-green-500 via-emerald-400 to-teal-500 py-16 px-4 sm:px-8 lg:px-20">
-      <div className="max-w-7xl mx-auto text-center text-white">
-        <motion.h2
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+    <div className="bg-gradient-to-r from-green-500 via-emerald-400 to-teal-500 py-16 mb-28">
+      <div className="w-11/12 lg:w-9/12 mx-auto text-center text-white">
+        {/* Heading with AOS fade-in effect */}
+        <h2
           className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6"
+          data-aos="fade-in"
         >
           Why Choose{" "}
           <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
             QuickTasker
           </span>
           ?
-        </motion.h2>
+        </h2>
 
-        <motion.p
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+        {/* Paragraph with AOS fade-in effect */}
+        <p
           className="text-sm sm:text-base md:text-lg lg:text-xl mb-8 leading-relaxed"
+          data-aos="fade-in"
+          data-aos-delay="300"
         >
           Revolutionize your task management experience. Stay organized and
           efficient with our user-friendly solution.
-        </motion.p>
+        </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {[
@@ -46,41 +55,29 @@ const WhyQuickTasker = () => {
               icon: "🛠️",
             },
           ].map((feature, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.6, delay: index * 0.3 }}
               className="bg-white rounded-lg p-6 text-gray-800 shadow-lg hover:shadow-xl transition-all"
+              data-aos="fade-up"
+              data-aos-delay={index * 200}
             >
               <div className="text-4xl mb-4">{feature.icon}</div>
               <h3 className="text-lg sm:text-xl font-semibold mb-2">
                 {feature.title}
               </h3>
               <p className="text-sm sm:text-base">{feature.description}</p>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-12"
-        >
-          <motion.button
-            className="bg-blue-500 text-white py-3 px-6 rounded-lg font-bold text-sm sm:text-base md:text-lg hover:bg-blue-700 transition"
-            initial={{ scale: 1 }}
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              repeatType: "loop",
-            }}
-          >
-            Get Started Now
-          </motion.button>
-        </motion.div>
+        {/* Button with AOS fade-in effect */}
+        <div className="mt-12" data-aos="fade-in" data-aos-delay="600">
+          <Link to="/all-tasks">
+            <button className="bg-blue-500 text-white py-3 px-6 rounded-lg font-bold text-sm sm:text-base md:text-lg hover:bg-blue-700 transition">
+              Get Started Now
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );

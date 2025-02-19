@@ -26,6 +26,7 @@ import PaymentHistory from "../Pages/Dashboard/Buyer/PaymentHistory";
 import ContactUs from "../Pages/Home/FAQ/FAQ";
 import AllTasks from "../Pages/AllTasks/AllTasks";
 import TaskDetailPage from "../Pages/TaskDetailPage/TaskDetailPage";
+import Profile from "../Pages/Dashboard/Profile/Profile";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,13 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: <Dashboard></Dashboard>,
     children: [
+      // Profile-----------------------------------------
+
+      {
+        path: "profile",
+        element: <Profile></Profile>,
+      },
+
       // Admin ---------------------------------------
       {
         path: "admin-home",

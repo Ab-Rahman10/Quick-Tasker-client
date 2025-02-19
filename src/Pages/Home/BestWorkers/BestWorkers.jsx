@@ -1,8 +1,19 @@
+import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { motion } from "framer-motion";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const BestWorkers = () => {
+  // Initialize AOS for fade effects
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Animation duration in ms
+      easing: "ease-in-out",
+      once: true, // Animation should happen only once while scrolling down
+    });
+  }, []);
+
   const axiosPublic = useAxiosPublic();
 
   const { data: bestWorkers, isLoading } = useQuery({
@@ -21,36 +32,21 @@ const BestWorkers = () => {
     );
 
   return (
-    <div className="my-10 w-11/12 mx-auto">
-      <motion.h2
+    <div className="py-20 mb-10 w-11/12 lg:w-9/12 mx-auto">
+      {/* Heading with AOS fade-in effect */}
+      <h2
+        data-aos="fade-in"
         className="text-3xl md:text-4xl text-center font-bold mb-8"
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
       >
         Our Best Workers
-      </motion.h2>
-      <motion.div
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
-        initial="hidden"
-        animate="visible"
-        variants={{
-          hidden: { opacity: 0 },
-          visible: {
-            opacity: 1,
-            transition: {
-              staggerChildren: 0.2,
-            },
-          },
-        }}
-      >
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {bestWorkers.map((worker) => (
-          <motion.div
+          // Each worker card will fade up as it scrolls into view
+          <div
             key={worker._id}
+            data-aos="fade-up"
             className="flex flex-col items-center bg-white rounded-lg shadow-lg p-6"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
           >
             {/* Profile Picture */}
             <div className="w-24 h-24 overflow-hidden rounded-full border-4 border-green-500">
@@ -76,9 +72,9 @@ const BestWorkers = () => {
                 </span>
               </p>
             </div>
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 };

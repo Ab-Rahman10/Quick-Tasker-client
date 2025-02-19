@@ -252,7 +252,7 @@ const Navbar = () => {
               {role === "admin" ? null : (
                 <li className="flex items-center space-x-4 bg-gray-100 px-4 py-2 rounded-lg shadow-sm">
                   <button className="flex items-center space-x-2 text-gray-800 hover:text-amber-500">
-                    <span>Available Coins:</span>
+                    <span className="whitespace-nowrap">Available Coins:</span>
                     <span className="text-amber-500 font-bold">{coins}</span>
                   </button>
                 </li>

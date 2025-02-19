@@ -1,7 +1,6 @@
 import React from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ManageTasks = () => {

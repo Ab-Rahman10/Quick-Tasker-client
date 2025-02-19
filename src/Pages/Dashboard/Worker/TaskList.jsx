@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const TaskList = () => {
   const axiosSecure = useAxiosSecure();
-  const [sortOrder, setSortOrder] = useState("asc"); // asc বা desc
+  const [sortOrder, setSortOrder] = useState("asc");
 
   const {
     data: tasks = [],
@@ -18,6 +20,10 @@ const TaskList = () => {
       return data;
     },
   });
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
 
   if (isLoading) {
     return (
@@ -62,6 +68,7 @@ const TaskList = () => {
             <div
               key={task._id}
               className="bg-white rounded-lg shadow-lg overflow-hidden my-6 hover:scale-105 transform transition-all duration-300"
+              data-aos="fade-up"
             >
               <img
                 src={task.task_image}

@@ -2,6 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { format } from "date-fns";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const PaymentHistory = () => {
   const { user, loading } = useAuth();
@@ -20,7 +23,10 @@ const PaymentHistory = () => {
     },
   });
 
-  // console.log(orders);
+  // AOS initialization
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   if (isLoading) {
     return (
@@ -32,8 +38,11 @@ const PaymentHistory = () => {
 
   return (
     <div className="mx-auto p-4">
-      <h2 className="text-2xl font-bold text-center mb-6">Payment History</h2>
-      <div className="overflow-x-auto">
+      <h2 className="text-2xl font-bold text-center mb-6" data-aos="fade-up">
+        Payment History
+      </h2>
+      <div className="overflow-x-auto" data-aos="fade-up">
+        {/* AOS fade effect added to the table */}
         <table className="min-w-full border-collapse border border-gray-200">
           <thead>
             <tr className="bg-green-500 text-white">
@@ -57,7 +66,8 @@ const PaymentHistory = () => {
               </tr>
             ) : (
               orders.map((order, index) => (
-                <tr key={index}>
+                <tr key={index} data-aos="fade-up">
+                  {/* AOS fade effect added to each row */}
                   <td className="px-4 py-2">{index + 1}</td>
                   <td className="px-4 py-2">{order.user?.email}</td>
                   <td className="px-4 py-2">{order.paymentId}</td>

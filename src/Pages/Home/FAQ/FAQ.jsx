@@ -50,9 +50,9 @@ const FAQ = () => {
             <div
               key={index}
               className="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-lg transition-shadow duration-300"
-              onClick={() => toggleAnswer(index)} // Handle click
-              data-aos="fade-up" // Apply fade-up animation using AOS
-              data-aos-delay={index * 100} // Add delay for staggered effect
+              onClick={() => toggleAnswer(index)}
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
             >
               <h3 className="text-xl font-semibold text-gray-800">
                 {faq.question}

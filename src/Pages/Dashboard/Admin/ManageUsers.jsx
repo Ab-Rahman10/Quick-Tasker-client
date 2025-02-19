@@ -1,9 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const ManageUsers = () => {
   const { user, loading } = useAuth();
@@ -22,6 +24,14 @@ const ManageUsers = () => {
       return data;
     },
   });
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-in-out",
+      once: true,
+    });
+  }, []);
 
   if (isLoading) {
     return (
@@ -110,7 +120,7 @@ const ManageUsers = () => {
           </thead>
           <tbody>
             {users.map((user, idx) => (
-              <tr key={user._id}>
+              <tr key={user._id} data-aos="fade-up">
                 <td>{idx + 1}</td>
                 <td>
                   <div className="flex items-center gap-3">
@@ -143,7 +153,6 @@ const ManageUsers = () => {
                     Update
                   </button>
                   {/* Open the modal using document.getElementById('ID').showModal() method */}
-
                   <dialog
                     id="my_modal_5"
                     className="modal modal-bottom sm:modal-middle"

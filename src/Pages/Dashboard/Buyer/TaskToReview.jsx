@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const TaskToReview = ({ refetch: refetchStats, approvedRefetch }) => {
   const [modalData, setModalData] = useState(null);
@@ -21,6 +23,10 @@ const TaskToReview = ({ refetch: refetchStats, approvedRefetch }) => {
       return data;
     },
   });
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   if (loading && isLoading)
     return (
@@ -70,7 +76,7 @@ const TaskToReview = ({ refetch: refetchStats, approvedRefetch }) => {
 
   return (
     <div className="w-full mx-auto px-4 py-6">
-      <h2 className="text-2xl font-bold mb-4 text-center">
+      <h2 className="text-2xl font-bold mb-4 text-center" data-aos="fade-up">
         Task Submissions to Review
       </h2>
 
@@ -79,7 +85,7 @@ const TaskToReview = ({ refetch: refetchStats, approvedRefetch }) => {
         <div className="text-center text-xl text-red-500">Not found</div>
       ) : (
         // Submissions Table
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto" data-aos="fade-up">
           <table className="table-auto w-full border-collapse border border-gray-300">
             <thead>
               <tr className="bg-green-500 text-white">
@@ -92,7 +98,7 @@ const TaskToReview = ({ refetch: refetchStats, approvedRefetch }) => {
             </thead>
             <tbody>
               {pendingSubs.map((submission, idx) => (
-                <tr key={submission._id}>
+                <tr key={submission._id} data-aos="fade-up">
                   <td className="text-center">{idx + 1}</td>
                   <td className=" border-gray-300 px-4 py-2 text-center">
                     {submission.worker_name}
@@ -107,6 +113,7 @@ const TaskToReview = ({ refetch: refetchStats, approvedRefetch }) => {
                     <button
                       className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600 whitespace-nowrap"
                       onClick={() => openModal(submission)}
+                      data-aos="fade-up"
                     >
                       View Submission
                     </button>
@@ -114,12 +121,14 @@ const TaskToReview = ({ refetch: refetchStats, approvedRefetch }) => {
                       <button
                         onClick={() => handleApprove(submission)}
                         className="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600"
+                        data-aos="fade-up"
                       >
                         Approve
                       </button>
                       <button
                         onClick={() => handleReject(submission)}
                         className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600"
+                        data-aos="fade-up"
                       >
                         Reject
                       </button>
@@ -135,7 +144,10 @@ const TaskToReview = ({ refetch: refetchStats, approvedRefetch }) => {
       {/* Modal */}
       {modalData && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white rounded-md shadow-lg p-6 w-96">
+          <div
+            className="bg-white rounded-md shadow-lg p-6 w-96"
+            data-aos="fade-up"
+          >
             <h3 className="text-xl font-bold mb-4">
               Submission Details for {modalData.worker_name}
             </h3>

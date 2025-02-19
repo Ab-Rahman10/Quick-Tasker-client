@@ -1,11 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { Link } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const AllTasks = () => {
   const axiosPublic = useAxiosPublic();
   const [sortOrder, setSortOrder] = useState("asc");
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-in-out",
+      once: true,
+    });
+  }, []);
 
   const {
     data: allTasks = [],
@@ -36,12 +46,19 @@ const AllTasks = () => {
 
   return (
     <div className="container mx-auto mt-5 px-4 sm:px-6 lg:px-8">
-      <h2 className="text-3xl font-semibold text-gray-800 text-center mb-6">
+      <h2
+        data-aos="fade-in"
+        className="text-3xl font-semibold text-gray-800 text-center mb-6"
+      >
         All Tasks
       </h2>
 
       {/* Sorting Dropdown */}
-      <div className="mb-4 flex justify-end">
+      <div
+        className="mb-4 flex justify-end"
+        data-aos="fade-in"
+        data-aos-delay="200"
+      >
         <select
           value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value)}
@@ -53,14 +70,19 @@ const AllTasks = () => {
       </div>
 
       {sortedTasks.length === 0 ? (
-        <div className="px-4 py-2 text-center text-2xl font-bold text-gray-500 mt-5">
+        <div
+          className="px-4 py-2 text-center text-2xl font-bold text-gray-500 mt-5"
+          data-aos="fade-in"
+        >
           No task found🚫
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-          {sortedTasks.map((task) => (
+          {sortedTasks.map((task, index) => (
             <div
               key={task._id}
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
               className="bg-white rounded-lg shadow-lg overflow-hidden my-6 hover:scale-105 transform transition-all duration-300"
             >
               <img

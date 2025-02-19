@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const AdminStats = () => {
   const { user, loading } = useAuth();
@@ -43,20 +45,14 @@ const AdminStats = () => {
     },
   });
 
-  // console.log(withdraws);
-
   const pendingWithdraws = withdraws.filter(
     (pendingWithdraw) => pendingWithdraw.status === "pending"
   );
-
-  // console.log(pendingWithdraws);
 
   // Total successful withdrawals
   const totalPayments = withdraws
     .filter((withdraw) => withdraw.status === "Approved")
     .reduce((total, withdraw) => total + withdraw.coins / 20, 0); // Assuming 20 coins = $1
-
-  // console.log(totalPayments);
 
   if (isLoading || withdrawLoading) {
     return (
@@ -83,12 +79,18 @@ const AdminStats = () => {
     }
   };
 
+  // Initialize AOS
+  AOS.init();
+
   return (
     <div className="w-full mx-auto p-6">
       {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-5">
         {/* Total Workers */}
-        <div className="stat-card bg-white rounded-lg shadow-lg p-6 flex flex-col items-center">
+        <div
+          className="stat-card bg-white rounded-lg shadow-lg p-6 flex flex-col items-center"
+          data-aos="fade-up"
+        >
           <div className="stat-title text-xl font-semibold text-gray-700 mb-2 text-center">
             Total Workers
           </div>
@@ -101,7 +103,10 @@ const AdminStats = () => {
         </div>
 
         {/* Total Buyers */}
-        <div className="stat-card bg-white rounded-lg shadow-lg p-6 flex flex-col items-center">
+        <div
+          className="stat-card bg-white rounded-lg shadow-lg p-6 flex flex-col items-center"
+          data-aos="fade-up"
+        >
           <div className="stat-title text-xl font-semibold text-gray-700 mb-2 text-center">
             Total Buyers
           </div>
@@ -114,7 +119,10 @@ const AdminStats = () => {
         </div>
 
         {/* Total Coins */}
-        <div className="stat-card bg-white rounded-lg shadow-lg p-6 flex flex-col items-center">
+        <div
+          className="stat-card bg-white rounded-lg shadow-lg p-6 flex flex-col items-center"
+          data-aos="fade-up"
+        >
           <div className="stat-title text-xl font-semibold text-gray-700 mb-2 text-center">
             Total Available Coins
           </div>
@@ -127,7 +135,10 @@ const AdminStats = () => {
         </div>
 
         {/* Total Payments */}
-        <div className="stat-card bg-white rounded-lg shadow-lg p-6 flex flex-col items-center">
+        <div
+          className="stat-card bg-white rounded-lg shadow-lg p-6 flex flex-col items-center"
+          data-aos="fade-up"
+        >
           <div className="stat-title text-xl font-semibold text-gray-700 mb-2 text-center">
             Total Payments
           </div>
@@ -142,7 +153,7 @@ const AdminStats = () => {
 
       {/* Withdraw request */}
       <div className="mt-10 ">
-        <h1 className="text-3xl font-bold mb-6 text-center">
+        <h1 className="text-3xl font-bold mb-6 text-center" data-aos="fade-up">
           Withdrawal Requests
         </h1>
         <div className="overflow-x-auto">
@@ -174,7 +185,7 @@ const AdminStats = () => {
                 </tr>
               ) : (
                 pendingWithdraws.map((withdraw, idx) => (
-                  <tr key={withdraw._id}>
+                  <tr key={withdraw._id} data-aos="fade-up">
                     <td>{idx + 1}</td>
                     <td>{withdraw.user?.name}</td>
                     <td>{withdraw.user?.email}</td>

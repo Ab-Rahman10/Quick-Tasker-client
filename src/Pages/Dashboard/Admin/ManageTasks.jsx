@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const ManageTasks = () => {
   const axiosSecure = useAxiosSecure();
@@ -18,6 +20,10 @@ const ManageTasks = () => {
     },
   });
 
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -26,7 +32,7 @@ const ManageTasks = () => {
     );
   }
 
-  // delete user
+  // delete task
   const handleDelete = async (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -57,8 +63,10 @@ const ManageTasks = () => {
 
   return (
     <div className="mt-5 p-6">
-      <h1 className="text-3xl font-bold mb-6 text-center">Manage Tasks</h1>
-      <div className="overflow-x-auto">
+      <h1 className="text-3xl font-bold mb-6 text-center" data-aos="fade-up">
+        Manage Tasks
+      </h1>
+      <div className="overflow-x-auto" data-aos="fade-up">
         <table className="table border">
           {/* head */}
           <thead className="bg-green-500 text-white">
@@ -84,7 +92,7 @@ const ManageTasks = () => {
               </tr>
             ) : (
               tasks.map((task, idx) => (
-                <tr key={task._id}>
+                <tr key={task._id} data-aos="fade-up">
                   <td>{idx + 1}</td>
                   <td>
                     <div className="flex items-center gap-3">

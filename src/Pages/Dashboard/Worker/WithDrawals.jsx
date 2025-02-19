@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useGetUserCoins from "../../../Hooks/useGetUserCoins";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Withdrawals = () => {
   const { user } = useAuth();
@@ -12,16 +14,18 @@ const Withdrawals = () => {
   const [coinToWithdraw, setCoinToWithdraw] = useState(" ");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   const handleCoinChange = (e) => {
-    const value = Math.min(e.target.value, coins); // it returns min value
+    const value = Math.min(e.target.value, coins);
     setCoinToWithdraw(value);
   };
 
-  // handle submit =-----------------
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Now save into db-----
     const form = e.target;
     const withdrawInfo = {
       coins: coinToWithdraw,
@@ -44,7 +48,6 @@ const Withdrawals = () => {
         navigate("/dashboard/task-list");
       }
     } catch (err) {
-      // console.log(err);
       toast.error(
         "There was an issue with your withdrawal request. Please try again."
       );
@@ -52,25 +55,33 @@ const Withdrawals = () => {
   };
 
   return (
-    <div className="lg:mt-4 lg:ml-4">
-      <div className="bg-gray-50 py-10 px-6 space-y-8 rounded-lg shadow-lg">
-        {/* Heading */}
-        <h1 className="text-3xl font-bold text-gray-800 text-center">
+    <div className="lg:mt-4 lg:ml-4" data-aos="fade-up">
+      <div
+        className="bg-gray-50 py-10 px-6 space-y-8 rounded-lg shadow-lg"
+        data-aos="fade-up"
+      >
+        <h1
+          className="text-3xl font-bold text-gray-800 text-center"
+          data-aos="fade-up"
+        >
           User Total Earning
         </h1>
 
-        {/* Coins and Withdrawal Amount Section */}
-        <div className="space-y-6">
-          {/* Current Coins */}
-          <div className="flex justify-between items-center border border-green-400 p-4 rounded-md">
+        <div className="space-y-6" data-aos="fade-up">
+          <div
+            className="flex justify-between items-center border border-green-400 p-4 rounded-md"
+            data-aos="fade-up"
+          >
             <span className="text-lg font-medium text-gray-600">
               Current Coins:
             </span>
             <span className="text-xl font-bold text-amber-500">{coins}</span>
           </div>
 
-          {/* Withdrawal Amount */}
-          <div className="flex justify-between items-center border border-green-400 p-4 rounded-md">
+          <div
+            className="flex justify-between items-center border border-green-400 p-4 rounded-md"
+            data-aos="fade-up"
+          >
             <span className="text-lg font-medium text-gray-600">
               Withdrawal Amount:
             </span>
@@ -80,22 +91,25 @@ const Withdrawals = () => {
           </div>
         </div>
 
-        {/* Info Text */}
-        <p className="text-center text-sm text-gray-500">
+        <p className="text-center text-sm text-gray-500" data-aos="fade-up">
           You can withdraw when you have a minimum of{" "}
           <span className="font-semibold text-gray-700">200 coins</span>{" "}
           (equivalent to $10).
         </p>
 
-        {/* Withdrawal Form */}
-        <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-          <h2 className="text-2xl font-semibold text-center mb-4">
+        <div
+          className="bg-white p-6 rounded-lg shadow-md mt-6"
+          data-aos="fade-up"
+        >
+          <h2
+            className="text-2xl font-semibold text-center mb-4"
+            data-aos="fade-up"
+          >
             Withdrawal Form
           </h2>
 
           <form onSubmit={handleSubmit}>
-            {/* Coin to Withdraw */}
-            <div className="mb-4">
+            <div className="mb-4" data-aos="fade-up">
               <label
                 htmlFor="coinToWithdraw"
                 className="block text-sm font-medium text-gray-700"
@@ -115,8 +129,7 @@ const Withdrawals = () => {
               />
             </div>
 
-            {/* Withdrawal Amount ($) */}
-            <div className="mb-4">
+            <div className="mb-4" data-aos="fade-up">
               <label
                 htmlFor="withdrawAmount"
                 className="block text-sm font-medium text-gray-700"
@@ -132,8 +145,7 @@ const Withdrawals = () => {
               />
             </div>
 
-            {/* Payment System */}
-            <div className="mb-4">
+            <div className="mb-4" data-aos="fade-up">
               <label
                 htmlFor="payment_system"
                 className="block text-sm font-medium text-gray-700"
@@ -152,8 +164,7 @@ const Withdrawals = () => {
               </select>
             </div>
 
-            {/* Account Number */}
-            <div className="mb-4">
+            <div className="mb-4" data-aos="fade-up">
               <label
                 htmlFor="accountNumber"
                 className="block text-sm font-medium text-gray-700"
@@ -170,8 +181,7 @@ const Withdrawals = () => {
               />
             </div>
 
-            {/* Withdraw Button */}
-            <div className="mt-6 text-center">
+            <div className="mt-6 text-center" data-aos="fade-up">
               {coinToWithdraw >= 200 ? (
                 <button
                   type="submit"

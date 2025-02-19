@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const PurchaseCoin = () => {
   const purchaseData = [
@@ -8,9 +11,16 @@ const PurchaseCoin = () => {
     { coins: 1000, price: 35 },
   ];
 
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <section className="py-12 px-6">
-      <h2 className="text-3xl font-extrabold text-center mb-8">
+      <h2
+        className="text-3xl font-extrabold text-center mb-8"
+        data-aos="fade-up"
+      >
         Choose Your Plan
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 w-full mx-auto">
@@ -18,6 +28,7 @@ const PurchaseCoin = () => {
           <div
             key={index}
             className="relative bg-white shadow-xl rounded-lg overflow-hidden hover:scale-105 transition-transform"
+            data-aos="fade-up"
           >
             <div className="absolute top-0 left-0 bg-green-500 text-white px-3 py-1 text-sm font-semibold rounded-br-lg">
               Best Value
@@ -37,7 +48,6 @@ const PurchaseCoin = () => {
                 to="/dashboard/payment"
                 state={{ coins: item.coins, price: item.price }}
               >
-                {" "}
                 <button className="w-full py-2 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition-colors">
                   Buy Now
                 </button>

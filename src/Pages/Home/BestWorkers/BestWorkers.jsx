@@ -5,12 +5,11 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const BestWorkers = () => {
-  // Initialize AOS for fade effects
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Animation duration in ms
+      duration: 1000,
       easing: "ease-in-out",
-      once: true, // Animation should happen only once while scrolling down
+      once: true,
     });
   }, []);
 
@@ -33,7 +32,6 @@ const BestWorkers = () => {
 
   return (
     <div className="py-20 mb-10 w-11/12 lg:w-9/12 mx-auto">
-      {/* Heading with AOS fade-in effect */}
       <h2
         data-aos="fade-in"
         className="text-3xl md:text-4xl text-center font-bold mb-8"

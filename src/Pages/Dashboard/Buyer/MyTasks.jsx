@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useGetUserCoins from "../../../Hooks/useGetUserCoins";
 import toast from "react-hot-toast";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const MyTasks = () => {
   const { user } = useAuth();
@@ -75,10 +78,17 @@ const MyTasks = () => {
     });
   };
 
+  // AOS initialization
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <div className="w-full mx-auto p-4">
       {/* Heading */}
-      <h1 className="text-3xl font-bold mb-6 text-center">My Tasks</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center" data-aos="fade-up">
+        My Tasks
+      </h1>
       <div className="overflow-x-auto">
         <table className="table w-full table-auto shadow-md border border-gray-200 rounded-lg">
           {/* head */}
@@ -100,13 +110,18 @@ const MyTasks = () => {
                 <td
                   colSpan="6"
                   className="py-6 text-center text-lg text-gray-700"
+                  data-aos="fade-up"
                 >
                   No Tasks found.
                 </td>
               </tr>
             ) : (
               tasks.map((task, idx) => (
-                <tr key={task._id} className="hover:bg-gray-100">
+                <tr
+                  key={task._id}
+                  className="hover:bg-gray-100"
+                  data-aos="fade-up"
+                >
                   <td>{idx + 1}</td>
                   <td>{task.title}</td>
                   <td className="text-center">{task.required_workers}</td>
@@ -117,13 +132,17 @@ const MyTasks = () => {
                   <td className="text-center">{task.compilation_date}</td>
                   <td className="flex space-x-2">
                     <Link to={`/dashboard/update-task/${task._id}`}>
-                      <button className="btn btn-xs btn-success text-white">
+                      <button
+                        className="btn btn-xs btn-success text-white"
+                        data-aos="fade-up"
+                      >
                         Update
                       </button>
                     </Link>
                     <button
                       onClick={() => handleDelete(task)}
                       className="btn btn-xs btn-error text-white"
+                      data-aos="fade-up"
                     >
                       Delete
                     </button>

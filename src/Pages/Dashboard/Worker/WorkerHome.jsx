@@ -1,6 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const WorkerHome = () => {
   const { user } = useAuth();
@@ -35,10 +38,18 @@ const WorkerHome = () => {
     (sub) => sub.status === "Approved"
   );
 
+  // AOS initialization
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <div className="w-full mx-auto p-6">
       {/* Stats Section */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      <div
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"
+        data-aos="fade-up"
+      >
         <div className="stat-card p-6 bg-white rounded-lg shadow-lg flex flex-col items-center">
           <h3 className="text-lg font-semibold text-gray-700">
             Total Submissions
@@ -69,7 +80,10 @@ const WorkerHome = () => {
       </div>
 
       {/* Approved Submissions Table */}
-      <div className="overflow-x-auto bg-white p-4 rounded-lg shadow-md border border-gray-200">
+      <div
+        className="overflow-x-auto bg-white p-4 rounded-lg shadow-md border border-gray-200"
+        data-aos="fade-up"
+      >
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">
           Approved Submissions
         </h2>
@@ -100,6 +114,7 @@ const WorkerHome = () => {
                 <tr
                   key={sub._id}
                   className="border-b hover:bg-gray-50 text-gray-800"
+                  data-aos="fade-up"
                 >
                   <td className="py-3 px-6">{idx + 1}</td>
                   <td className="py-3 px-6">{sub.title}</td>
